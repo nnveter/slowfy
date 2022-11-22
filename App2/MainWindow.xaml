@@ -66,19 +66,15 @@
             <Frame x:Name="contentFrame">
 
                 <Grid>
-
-                    
-
-
                     <StackPanel Height="200" Typography.Capitals="AllSmallCaps" VerticalAlignment="Top" Orientation="Horizontal" Background="Aqua">
                         <Rectangle  x:Name="Rectangle1" Fill="{ThemeResource AcrylicBackgroundFillColorDefaultBrush}" Typography.Capitals="AllSmallCaps" Height="120" Width="90" />
                     </StackPanel>
+
                     <MediaPlayerElement
                     MaxWidth="2000"
                     AutoPlay="False"
                     AreTransportControlsEnabled="True" />
-                    
-                    
+
                 </Grid>
             </Frame>
             </NavigationView>
