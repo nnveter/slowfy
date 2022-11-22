@@ -14,17 +14,18 @@
 
         <Grid.RowDefinitions>
                 <RowDefinition Height="28"/>
-                <RowDefinition/>
-
-            </Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
 
 
 
             <Grid x:Name="AppTitleBar">
+                
                 <Image Source="Images/WindowIcon.png"
                    HorizontalAlignment="Left" 
                    Width="16" Height="16" 
                    Margin="8,0"/>
+                
                 <TextBlock x:Name="AppTitleTextBlock" Text="App title"
                        TextWrapping="NoWrap"
                        Style="{StaticResource CaptionTextBlockStyle}" 
@@ -45,42 +46,40 @@
                         ExpandedModeThresholdWidth="500"
                         SelectionFollowsFocus="Disabled"
                         IsTabStop="False">
+
+                <NavigationView.MenuItems>
+                
+                    <NavigationViewItem Content="Menu Item1" Tag="SamplePage1" x:Name="SamplePage2Item">
+                        <NavigationViewItem.Icon>
+                            <SymbolIcon Symbol="Home" />
+                        </NavigationViewItem.Icon>
+                    </NavigationViewItem>
+                
+                    <NavigationViewItem Content="Menu Item1" Tag="SamplePage1" x:Name="SamplePage1Item">
+                        <NavigationViewItem.Icon>
+                            <SymbolIcon Symbol="Play" />
+                        </NavigationViewItem.Icon>
+                    </NavigationViewItem>
+                
+                </NavigationView.MenuItems>
             
-            <NavigationView.MenuItems>
-                <NavigationViewItem Content="Menu Item1" Tag="SamplePage1" x:Name="SamplePage2Item">
-                    <NavigationViewItem.Icon>
-                        <SymbolIcon Symbol="Home" />
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
-                <NavigationViewItem Content="Menu Item1" Tag="SamplePage1" x:Name="SamplePage1Item">
-                    <NavigationViewItem.Icon>
-                        <SymbolIcon Symbol="Play" />
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
-            </NavigationView.MenuItems>
+                <NavigationView.PaneCustomContent>
+                    <HyperlinkButton x:Name="PaneHyperlink" Content="More info" Margin="12,0" Visibility="Collapsed" />
+                </NavigationView.PaneCustomContent>
 
-            <NavigationView.PaneCustomContent>
-                <HyperlinkButton x:Name="PaneHyperlink" Content="More info" Margin="12,0" Visibility="Collapsed" />
-            </NavigationView.PaneCustomContent>
+                    <Frame x:Name="contentFrame">
 
-            <Frame x:Name="contentFrame">
+                        <Grid>
+                            <StackPanel Height="200" Typography.Capitals="AllSmallCaps" VerticalAlignment="Top" Orientation="Horizontal" Background="Aqua">
+                                <Rectangle  x:Name="Rectangle1" Fill="{ThemeResource AcrylicBackgroundFillColorDefaultBrush}" Typography.Capitals="AllSmallCaps" Height="120" Width="90" />
+                            </StackPanel>
 
-                <Grid>
-                    <StackPanel Height="200" Typography.Capitals="AllSmallCaps" VerticalAlignment="Top" Orientation="Horizontal" Background="Aqua">
-                        <Rectangle  x:Name="Rectangle1" Fill="{ThemeResource AcrylicBackgroundFillColorDefaultBrush}" Typography.Capitals="AllSmallCaps" Height="120" Width="90" />
-                    </StackPanel>
+                            <MediaPlayerElement MaxWidth="2000" AutoPlay="False" AreTransportControlsEnabled="True" />
 
-                    
-                    <MediaPlayerElement
-                    MaxWidth="2000"
-                    AutoPlay="False"
-                    AreTransportControlsEnabled="True" />
+                        </Grid>
+                    </Frame>
 
-                </Grid>
-            </Frame>
-            </NavigationView>
-
-        
+        </NavigationView>
 
     </Grid>
     
