@@ -34,8 +34,10 @@
 
             </Grid>
 
-        <NavigationView x:Name="NavigationView" Grid.Row="1" Canvas.ZIndex="0" Loaded="NavigationView_Loaded" SelectionChanged="NavigationView_SelectionChanged" 
-                        Header="WinUI 3 Navigation Sample" IsBackButtonVisible="Auto" IsSettingsVisible="False"  IsBackEnabled="True" AlwaysShowHeader="True" PaneTitle="menu"
+        <NavigationView x:Name="NavigationView" Grid.Row="1" Canvas.ZIndex="0" Loaded="NavigationView_Loaded" 
+                        SelectionChanged="NavigationView_SelectionChanged" 
+                        Header="WinUI 3 Navigation Sample" IsBackButtonVisible="Auto" 
+                        IsSettingsVisible="False"  IsBackEnabled="True" AlwaysShowHeader="True" PaneTitle="menu"
                         PaneDisplayMode="Left"
                         ExpandedModeThresholdWidth="500"
                         SelectionFollowsFocus="Disabled"
