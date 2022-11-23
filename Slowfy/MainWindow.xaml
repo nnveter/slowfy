@@ -21,7 +21,7 @@
 
             <Grid x:Name="AppTitleBar">
                 
-                <Image Source="iconPath/bb.ico"
+                <Image Source="iconPath/icons8.ico"
                    HorizontalAlignment="Left" 
                    Width="16" Height="16" 
                    Margin="8,0"/>
@@ -86,7 +86,7 @@
                 </NavigationView.PaneCustomContent>
 
             <Frame x:Name="ContentFrame">
-
+                            
                        
                     </Frame>
 

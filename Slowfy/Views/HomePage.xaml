@@ -15,7 +15,13 @@
 
         <StackPanel Height="200" Typography.Capitals="AllSmallCaps" VerticalAlignment="Top" Orientation="Horizontal" Background="Aqua">
             <Rectangle  x:Name="Rectangle1" Fill="{ThemeResource AcrylicBackgroundFillColorDefaultBrush}" Typography.Capitals="AllSmallCaps" Height="120" Width="90" />
+            
         </StackPanel>
+
+        <!-- XAML Code -->
+
+
+        <ListView Margin="10" Name="lvDataBinding"></ListView>
 
         <MediaPlayerElement MaxWidth="2000" AutoPlay="False" AreTransportControlsEnabled="True" />
 
