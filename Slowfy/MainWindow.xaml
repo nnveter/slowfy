@@ -42,7 +42,13 @@
             
             
             <NavigationView.FooterMenuItems>
-                
+                <NavigationViewItem Content="Account"
+                            Tag="XamlBrewer.WinUI3.Navigation.Sample.Views.AccountPage"
+                            ToolTipService.ToolTip="AccountPage">
+                    <NavigationViewItem.Icon>
+                        <SymbolIcon Symbol ="ContactPresence" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
             </NavigationView.FooterMenuItems>
 
 
@@ -69,7 +75,7 @@
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 
-                <NavigationViewItem Language="ru-RU" Content="My music υσι"
+                <NavigationViewItem Language="ru-RU" Content="My music"
                             Tag="XamlBrewer.WinUI3.Navigation.Sample.Views.MusicPage"
                             ToolTipService.ToolTip="MusicPage">
                     <NavigationViewItem.Icon>
