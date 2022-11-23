@@ -2,9 +2,9 @@
 
 namespace XamlBrewer.WinUI3.Navigation.Sample.Views
 {
-    public sealed partial class AboutPage : Page
+    public sealed partial class MusicPage : Page
     {
-        public AboutPage()
+        public MusicPage()
         {
             this.InitializeComponent();
         }

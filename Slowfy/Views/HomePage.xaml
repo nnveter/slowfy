@@ -18,11 +18,7 @@
             
         </StackPanel>
 
-        <!-- XAML Code -->
-
-
-        <ListView Margin="10" Name="lvDataBinding"></ListView>
-
+        
         <MediaPlayerElement MaxWidth="2000" AutoPlay="False" AreTransportControlsEnabled="True" />
 
     </Grid>

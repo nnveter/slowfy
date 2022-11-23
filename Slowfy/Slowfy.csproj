@@ -88,7 +88,7 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Views\AboutPage.xaml.cs">
+    <Compile Update="Views\MusicPage.xaml.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Update="Views\HomePage.xaml.cs">
