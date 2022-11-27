@@ -24,8 +24,10 @@ using WinRT;
 using WinRT.Interop;
 using Microsoft.Toolkit.Uwp.Notifications;
 using XamlBrewer.WinUI3.Navigation.Sample.Views;
-using System.Net.Http;
-using Windows.Storage;
+
+
+
+
 
 namespace App2
 {
@@ -36,129 +38,15 @@ namespace App2
         WindowsSystemDispatcherQueueHelper m_wsdqHelper; // See below for implementation.
         MicaController m_backdropController;
         SystemBackdropConfiguration m_configurationSource;
-        String State = "Reg";
         public MainWindow()
         {
             this.InitializeComponent();
-            
             ExtendsContentIntoTitleBar = true;
             SetTitleBar(AppTitleBar);
             TrySetSystemBackdrop();
-            NavigationView.IsPaneVisible = false;
+
+            
         }
-
-        private async void Button_Click(object sender, RoutedEventArgs e)
-        {
-            if (State == "Reg")
-            {
-                State = "Log";
-                TextBlock.Text = "Login";
-                Name.Visibility = Visibility.Collapsed;
-                Hyperlink.Content = "Don't have an account yet?";
-            }
-            else {
-                State = "Reg";
-                TextBlock.Text = "Create new account";
-                Name.Visibility = Visibility.Visible;
-                Hyperlink.Content = "Do you already have an account?";
-
-            }
-        }
-
-        private async void myButton_Click(object sender, RoutedEventArgs e)
-        {
-            ProgressBar.Visibility = Visibility.Visible;
-            var Name1 = Name.Text;
-            var Email1 = Email.Text;
-            var Password = passworBoxWithRevealmode.Password;
-            var client = new HttpClient();
-
-            //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "Your Oauth token");
-            if (State == "Reg")
-            {
-                var values = new Dictionary<string, string>
-                    {
-                      { "Email", Email1 },
-                      { "Password", Password},
-                      { "Name", Name1 },
-
-                    };
-
-                string url = "https://localhost:7148/users/Create";
-                var data = new FormUrlEncodedContent(values);
-                var response = await client.PostAsync(url, data);
-
-                ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
-
-                var res = await response.Content.ReadAsStringAsync();
-                if (res != "bad request")
-                {
-                    ProgressBar.Visibility = Visibility.Collapsed;
-                    localSettings.Values["JwtToken2"] = await response.Content.ReadAsStringAsync();
-                    ContentFrame.Navigate(typeof(HomePage));
-
-                    SetCurrentNavigationViewItem(GetNavigationViewItems(typeof(HomePage)).First());
-                    NavigationView.IsPaneVisible = true;
-                }
-                else
-                {
-                    ProgressBar.Visibility = Visibility.Collapsed;
-                    Info.Visibility = Visibility.Visible;
-                    Info.Message = res;
-
-                }
-            }
-            else {
-                var values = new Dictionary<string, string>
-                    {
-                      { "Email", Email1 },
-                      { "Password", Password},
-                    };
-
-                string url = "https://localhost:7148/users/Login";
-                var data = new FormUrlEncodedContent(values);
-                var response = await client.PostAsync(url, data);
-
-                ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
-
-                var res = await response.Content.ReadAsStringAsync();
-                if (res != "bad request")
-                {
-                    ProgressBar.Visibility = Visibility.Collapsed;
-                    localSettings.Values["JwtToken2"] = await response.Content.ReadAsStringAsync();
-                    ContentFrame.Navigate(typeof(HomePage));
-
-                    SetCurrentNavigationViewItem(GetNavigationViewItems(typeof(HomePage)).First());
-                    NavigationView.IsPaneVisible = true;
-                }
-                else
-                {
-                    ProgressBar.Visibility = Visibility.Collapsed;
-                    Info.Visibility = Visibility.Visible;
-                    Info.Message = res;
-
-                }
-
-            }
-
-        }
-        private void RevealModeCheckbox_Changed(object sender, RoutedEventArgs e)
-        {
-            if (revealModeCheckBox.IsChecked == true)
-            {
-                passworBoxWithRevealmode.PasswordRevealMode = PasswordRevealMode.Visible;
-            }
-            else
-            {
-                passworBoxWithRevealmode.PasswordRevealMode = PasswordRevealMode.Hidden;
-            }
-        }
-
-
-
-
-
-
 
         private void NavigationView_SelectionChanged(
     NavigationView sender,
@@ -186,19 +74,14 @@ namespace App2
             NavigationView.SelectedItem = item;
         }
 
-        private void NavigationView_Loaded(object sender,RoutedEventArgs e)
+        private void NavigationView_Loaded(
+    object sender,
+    RoutedEventArgs e)
         {
-            ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+           
+            ContentFrame.Navigate(typeof(HomePage));
 
-            // load a setting that is local to the device
-            String localValue = localSettings.Values["JwtToken2"] as string;
-            if (localValue != null)
-            {
-                ContentFrame.Navigate(typeof(HomePage));
-
-                SetCurrentNavigationViewItem(GetNavigationViewItems(typeof(HomePage)).First());
-                NavigationView.IsPaneVisible = true;
-            }
+            SetCurrentNavigationViewItem(GetNavigationViewItems(typeof(HomePage)).First());
         }
 
         public List<NavigationViewItem> GetNavigationViewItems()
