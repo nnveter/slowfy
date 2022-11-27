@@ -94,7 +94,7 @@ namespace App2
                 if (res != "bad request")
                 {
                     ProgressBar.Visibility = Visibility.Collapsed;
-                    localSettings.Values["JwtToken2"] = await response.Content.ReadAsStringAsync();
+                    localSettings.Values["JwtToken"] = await response.Content.ReadAsStringAsync();
                     ContentFrame.Navigate(typeof(HomePage));
 
                     SetCurrentNavigationViewItem(GetNavigationViewItems(typeof(HomePage)).First());
@@ -125,7 +125,7 @@ namespace App2
                 if (res != "bad request")
                 {
                     ProgressBar.Visibility = Visibility.Collapsed;
-                    localSettings.Values["JwtToken2"] = await response.Content.ReadAsStringAsync();
+                    localSettings.Values["JwtToken"] = await response.Content.ReadAsStringAsync();
                     ContentFrame.Navigate(typeof(HomePage));
 
                     SetCurrentNavigationViewItem(GetNavigationViewItems(typeof(HomePage)).First());
@@ -191,7 +191,7 @@ namespace App2
             ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
 
             // load a setting that is local to the device
-            String localValue = localSettings.Values["JwtToken2"] as string;
+            String localValue = localSettings.Values["JwtToken"] as string;
             if (localValue != null)
             {
                 ContentFrame.Navigate(typeof(HomePage));
