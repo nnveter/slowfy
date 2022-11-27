@@ -16,6 +16,8 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using Windows.Storage;
+using App2;
+using System.Threading.Tasks;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -30,9 +32,19 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
         public AccountPage()
         {
             this.InitializeComponent();
+            Pro();
         }
 
-        private void bt_Click(object sender, RoutedEventArgs e)
+        private async void Pro()
+        {
+            ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            String token = localSettings.Values["JwtToken"] as string;
+            textblock.Text = await new ReqService().Get("https://localhost:7148/users/GetMyName", token);
+        }
+
+        
+
+        private async void bt_Click(object sender, RoutedEventArgs e)
         {
             ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
             localSettings.Values["JwtToken"] = null;

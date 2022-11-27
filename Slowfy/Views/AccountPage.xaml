@@ -7,11 +7,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:App2.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     mc:Ignorable="d"
     Background="Transparent">
 
     <Grid>
-        <Button x:Name="bt" Content="Log Out" Click="bt_Click"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <PersonPicture Margin="20,5,0,0" ProfilePicture="https://docs.microsoft.com/windows/uwp/contacts-and-calendar/images/shoulder-tap-static-payload.png" />
+            <TextBlock FontSize="23" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Center" x:Name="textblock" Text=""/>
+        </StackPanel>
+        <Button x:Name="bt" HorizontalAlignment="Right" Style="{StaticResource AccentButtonStyle}" VerticalAlignment="Bottom" Content="Log Out" Click="bt_Click"/>
     </Grid>
 </Page>

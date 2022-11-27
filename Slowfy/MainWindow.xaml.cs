@@ -182,10 +182,12 @@ namespace App2
 
         private void NavigationView_Loaded(object sender,RoutedEventArgs e)
         {
+
             ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
 
             // load a setting that is local to the device
             String localValue = localSettings.Values["JwtToken"] as string;
+            
             if (localValue != null)
             {
                 ContentFrame.Navigate(typeof(HomePage));
