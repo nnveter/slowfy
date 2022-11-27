@@ -32,10 +32,10 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
         public AccountPage()
         {
             this.InitializeComponent();
-            Pro();
+            SetName();
         }
 
-        private async void Pro()
+        private async void SetName()
         {
             ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
             String token = localSettings.Values["JwtToken"] as string;
