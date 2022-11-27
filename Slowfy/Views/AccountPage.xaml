@@ -12,6 +12,6 @@
     Background="Transparent">
 
     <Grid>
-        <Button x:Name="bt" Content="Delete mom" Click="bt_Click"/>
+        <Button x:Name="bt" Content="Log Out" Click="bt_Click"/>
     </Grid>
 </Page>
