@@ -26,6 +26,7 @@ using Microsoft.Toolkit.Uwp.Notifications;
 using XamlBrewer.WinUI3.Navigation.Sample.Views;
 using System.Net.Http;
 using Windows.Storage;
+using Microsoft.VisualBasic;
 
 namespace App2
 {
@@ -76,25 +77,20 @@ namespace App2
             //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "Your Oauth token");
             if (State == "Reg")
             {
-                var values = new Dictionary<string, string>
-                    {
-                      { "Email", Email1 },
-                      { "Password", Password},
-                      { "Name", Name1 },
-
-                    };
-
-                string url = "https://localhost:7148/users/Create";
-                var data = new FormUrlEncodedContent(values);
-                var response = await client.PostAsync(url, data);
+                string response = await new ReqService().Post("https://localhost:7148/users/Create", new Dictionary<string, string>()
+                {
+                    { "Email", Email1 },
+                    { "Password", Password },
+                    { "Name", Name1 },
+                });
 
                 ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
 
-                var res = await response.Content.ReadAsStringAsync();
+                var res = response;
                 if (res != "bad request")
                 {
                     ProgressBar.Visibility = Visibility.Collapsed;
-                    localSettings.Values["JwtToken"] = await response.Content.ReadAsStringAsync();
+                    localSettings.Values["JwtToken"] = response;
                     ContentFrame.Navigate(typeof(HomePage));
 
                     SetCurrentNavigationViewItem(GetNavigationViewItems(typeof(HomePage)).First());
@@ -109,23 +105,20 @@ namespace App2
                 }
             }
             else {
-                var values = new Dictionary<string, string>
-                    {
-                      { "Email", Email1 },
-                      { "Password", Password},
-                    };
+                string response = await new ReqService().Post("https://localhost:7148/users/Login", new Dictionary<string, string>()
+                {
+                    { "Email", Email1 },
+                    { "Password", Password },
+                });
 
-                string url = "https://localhost:7148/users/Login";
-                var data = new FormUrlEncodedContent(values);
-                var response = await client.PostAsync(url, data);
 
                 ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
 
-                var res = await response.Content.ReadAsStringAsync();
+                var res = response;
                 if (res != "bad request")
                 {
                     ProgressBar.Visibility = Visibility.Collapsed;
-                    localSettings.Values["JwtToken"] = await response.Content.ReadAsStringAsync();
+                    localSettings.Values["JwtToken"] = response;
                     ContentFrame.Navigate(typeof(HomePage));
 
                     SetCurrentNavigationViewItem(GetNavigationViewItems(typeof(HomePage)).First());
