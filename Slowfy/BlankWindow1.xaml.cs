@@ -15,20 +15,26 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using Windows.Devices.Enumeration;
+using Microsoft.UI.Xaml.Media.Animation;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
-namespace XamlBrewer.WinUI3.Navigation.Sample.Views
+namespace App2
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// An empty window that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class AccountPage : Page
+    public sealed partial class BlankWindow1 : Window
     {
-        public AccountPage()
+        public BlankWindow1()
         {
             this.InitializeComponent();
+            
         }
+
     }
+
+
 }
