@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d"
+      NavigationCacheMode="Enabled"
       Background="Transparent">
 
     <Grid>
@@ -18,8 +19,8 @@
             
         </StackPanel>
 
-        
-        <MediaPlayerElement MaxWidth="2000" AutoPlay="False" AreTransportControlsEnabled="True" />
+
+        <MediaPlayerElement x:Name="Player" Source="file:///C:/Users/Илья/Downloads/mazellovvv_maz_korzh_-_YA_pomnyu_(musmore.com).mp3" MaxWidth="2000" AutoPlay="False" AreTransportControlsEnabled="True" />
 
     </Grid>
 </Page>

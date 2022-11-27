@@ -46,6 +46,7 @@ namespace App2
             SetTitleBar(AppTitleBar);
             TrySetSystemBackdrop();
             NavigationView.IsPaneVisible = false;
+
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)

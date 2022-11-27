@@ -35,7 +35,7 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
         private void bt_Click(object sender, RoutedEventArgs e)
         {
             ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
-            localSettings.Values["JwtToken2"] = null;
+            localSettings.Values["JwtToken"] = null;
         }
     }
 }
