@@ -35,6 +35,10 @@ public class ReqService
         if (bearer != null) client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", bearer);
 
         var response = await client.GetAsync(url);
+        if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+        {
+            return "bad";
+        }
         String res = await response.Content.ReadAsStringAsync();
         res = res.TrimEnd('"');
         res = res.TrimStart('"');

@@ -32,7 +32,15 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
         public AccountPage()
         {
             this.InitializeComponent();
-            SetName();
+            ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            String Name = localSettings.Values["Name"] as string;
+            if (!String.IsNullOrEmpty(Name))
+            {
+                textblock.Text = Name;
+            }
+            else {
+                SetName();
+            }
         }
 
         private async void SetName()

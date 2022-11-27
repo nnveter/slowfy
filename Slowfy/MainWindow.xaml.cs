@@ -27,6 +27,7 @@ using XamlBrewer.WinUI3.Navigation.Sample.Views;
 using System.Net.Http;
 using Windows.Storage;
 using Microsoft.VisualBasic;
+using Newtonsoft.Json.Linq;
 
 namespace App2
 {
@@ -90,6 +91,8 @@ namespace App2
                 var res = response;
                 if (res != "bad request")
                 {
+
+                    localSettings.Values["Name"] = Name1;
                     ProgressBar.Visibility = Visibility.Collapsed;
                     localSettings.Values["JwtToken"] = response;
                     ContentFrame.Navigate(typeof(HomePage));
@@ -118,6 +121,7 @@ namespace App2
                 var res = response;
                 if (res != "bad request")
                 {
+                    localSettings.Values["Name"] = await new ReqService().Get("https://localhost:7148/users/GetMyName", response);
                     ProgressBar.Visibility = Visibility.Collapsed;
                     localSettings.Values["JwtToken"] = response;
                     ContentFrame.Navigate(typeof(HomePage));
@@ -180,19 +184,32 @@ namespace App2
             NavigationView.SelectedItem = item;
         }
 
-        private void NavigationView_Loaded(object sender,RoutedEventArgs e)
+        private async void NavigationView_Loaded(object sender,RoutedEventArgs e)
         {
 
             ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
 
             // load a setting that is local to the device
             String localValue = localSettings.Values["JwtToken"] as string;
-            
-            if (localValue != null)
+            //!!!!!!!!!!!!
+            //string result = await new ReqService().Get("https://localhost:7148/users/checktoken", localValue);
+            if (localValue != "bad")
             {
-                ContentFrame.Navigate(typeof(HomePage));
 
-                SetCurrentNavigationViewItem(GetNavigationViewItems(typeof(HomePage)).First());
+                if (localValue != null)
+                {
+                    ContentFrame.Navigate(typeof(HomePage));
+
+                    SetCurrentNavigationViewItem(GetNavigationViewItems(typeof(HomePage)).First());
+                    NavigationView.IsPaneVisible = true;
+                }
+
+            }
+            else
+            {
+                ContentFrame.Navigate(typeof(MainWindow));
+
+                SetCurrentNavigationViewItem(GetNavigationViewItems(typeof(MainWindow)).First());
                 NavigationView.IsPaneVisible = true;
             }
         }
