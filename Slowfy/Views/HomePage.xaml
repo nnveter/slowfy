@@ -8,7 +8,7 @@
       NavigationCacheMode="Enabled"
       Background="Transparent">
 
-    <Grid>
+    <!--<Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="auto" />
@@ -22,5 +22,19 @@
 
         <MediaPlayerElement x:Name="Player" Source="file:///C:/Users/Илья/Downloads/mazellovvv_maz_korzh_-_YA_pomnyu_(musmore.com).mp3" MaxWidth="2000" AutoPlay="False" AreTransportControlsEnabled="True" />
 
+    </Grid>-->
+
+    <Grid x:Name="ContentArea">
+        <StackPanel Orientation="Horizontal">
+            <CommandBar Background="Transparent" Margin="-16,0,0,0" DefaultLabelPosition="Right">
+                <AppBarButton x:Name="AddTask" Icon="Add" Label="Add" ToolTipService.ToolTip="Adds a new task to the list." Click="AddTask_Click"/>
+                <AppBarButton x:Name="EditTask" Icon="Edit" Label="Edit" ToolTipService.ToolTip="Edit or remove tasks." Click="EditTask_Click"/>
+            </CommandBar>
+            <InfoBar IsOpen="False" x:Name="CancelBar" Severity="Error" Title="Task cancelled" Message="The task was not created because it was cancelled." />
+            <InfoBar IsOpen="false" x:Name="SuccessBar" Severity="Success" Title="Success" Message="Task successfully created."/>
+            <TextBlock x:Name="pocText" Margin="20,14,0,0"/>
+        </StackPanel>
+
+        <ListView x:Name="TestView" SelectionMode="Multiple" SelectionChanged="TestView_SelectionChanged" ScrollViewer.HorizontalScrollMode="Enabled" ScrollViewer.HorizontalScrollBarVisibility="Auto" Margin="0,80,0,0"/>
     </Grid>
 </Page>
