@@ -39,6 +39,7 @@ namespace App2
         WindowsSystemDispatcherQueueHelper m_wsdqHelper; // See below for implementation.
         MicaController m_backdropController;
         SystemBackdropConfiguration m_configurationSource;
+        int nav = 1;
         String State = "Reg";
         public MainWindow()
         {
@@ -50,6 +51,16 @@ namespace App2
             TrySetSystemBackdrop();
             NavigationView.IsPaneVisible = false;
 
+        }
+
+        private void NavigationView_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
+        {
+            nav--;
+            if (nav <= 0) {
+                NavigationView.IsBackEnabled = false;
+            }
+            ContentFrame.GoBack();
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -179,7 +190,8 @@ namespace App2
             {
                 return;
             }
-
+            nav++;
+            NavigationView.IsBackEnabled = true;
             ContentFrame.Navigate(
             Type.GetType(item.Tag.ToString()),item.Content);
             NavigationView.Header = item.Content;
@@ -206,6 +218,8 @@ namespace App2
 
                     SetCurrentNavigationViewItem(GetNavigationViewItems(typeof(HomePage)).First());
                     NavigationView.IsPaneVisible = true;
+                    NavigationView.IsBackEnabled = false;
+                    nav = 0;
                 }
             }
 
@@ -334,6 +348,7 @@ namespace App2
                 case ElementTheme.Default: m_configurationSource.Theme = Microsoft.UI.Composition.SystemBackdrops.SystemBackdropTheme.Default; break;
             }
         }
+
     }
 
     class WindowsSystemDispatcherQueueHelper

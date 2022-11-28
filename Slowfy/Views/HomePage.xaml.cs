@@ -6,17 +6,22 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.Media.Core;
 
 namespace XamlBrewer.WinUI3.Navigation.Sample.Views
 {
     public sealed partial class HomePage : Page
     {
         
-
+        public List<string> track = new List<string>();
         public HomePage()
         {
             this.InitializeComponent();
-            TestView.Items.Add("fssfzrdcthe3r");
+            TestView.Items.Add("Mazzelov | Помню");
+            track.Add("file:///C:/Users/Илья/Downloads/mazellovvv_maz_korzh_-_YA_pomnyu_(musmore.com).mp3");
+            TestView.Items.Add("Шарлот | Щека на щеку");
+            track.Add("file:///C:/Users/Илья/Downloads/v0_10056371543_1_1.mp3");
+
         }
 
         
@@ -37,7 +42,6 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
             // Sets content dialog
             ContentDialog dialog = new CreateTaskDialog();
             dialog.XamlRoot = this.XamlRoot;
-
             // Stores result for use in statement
             var result = await dialog.ShowAsync();
 
@@ -50,14 +54,26 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
         }
 
         // Handles removal of items in the List.
-        private void TestView_SelectionChanged(object sender, SelectionChangedEventArgs e) // Event handler
+        private async void TestView_SelectionChanged(object sender, SelectionChangedEventArgs e) // Event handler
         {
             // Looking at if the list is anything more than 0 items, they can be removed
-            
+            if (TestView.SelectedIndex > -1)
+            {
+                Player.Source = MediaSource.CreateFromUri(new Uri(track[TestView.SelectedIndex]));
+            }
         }
 
         private void HyperlinkButton_Click(object sender, RoutedEventArgs e)
         {
+            
+            
+        }
+
+        private void TestView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+            
+            
             
         }
     }

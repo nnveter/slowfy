@@ -9,8 +9,8 @@
     
 
         <Grid>
-            
-            
+
+
 
         <Grid.RowDefinitions>
             <RowDefinition Height="28"/>
@@ -20,13 +20,13 @@
 
 
         <Grid x:Name="AppTitleBar">
-                
-                <Image Source="iconPath/icons8.ico"
+
+            <Image Source="iconPath/icons8.ico"
                    HorizontalAlignment="Left" 
                    Width="16" Height="16" 
                    Margin="8,0"/>
 
-                <TextBlock x:Name="AppTitleTextBlock" Text="Slowfy"
+            <TextBlock x:Name="AppTitleTextBlock" Text="Slowfy"
                    TextWrapping="NoWrap"
                    Style="{StaticResource CaptionTextBlockStyle}" 
                    VerticalAlignment="Center"
@@ -36,8 +36,8 @@
 
         <NavigationView x:Name="NavigationView" Grid.Row="1" Canvas.ZIndex="0" Loaded="NavigationView_Loaded" 
                         SelectionChanged="NavigationView_SelectionChanged" 
-                        IsBackButtonVisible="Auto" 
-                        IsSettingsVisible="False"   IsBackEnabled="True" AlwaysShowHeader="True" PaneTitle="menu"
+                        IsBackButtonVisible="Collapsed"
+                        IsSettingsVisible="False" BackRequested="NavigationView_BackRequested"  IsBackEnabled="True" AlwaysShowHeader="True" PaneTitle="menu"
                         PaneDisplayMode="Left"
                         ExpandedModeThresholdWidth="500"
                         SelectionFollowsFocus="Disabled"
@@ -94,10 +94,10 @@
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
             </NavigationView.MenuItems>
-            
-                <NavigationView.PaneCustomContent>
-                    <HyperlinkButton x:Name="PaneHyperlink" Content="More info" Margin="12,0" Visibility="Collapsed" />
-                </NavigationView.PaneCustomContent>
+
+            <NavigationView.PaneCustomContent>
+                <HyperlinkButton x:Name="PaneHyperlink" Content="More info" Margin="12,0" Visibility="Collapsed" />
+            </NavigationView.PaneCustomContent>
 
             <Frame x:Name="ContentFrame">
                 <Grid>
@@ -128,7 +128,9 @@
 
             </Frame>
 
+            
         </NavigationView>
+        
 
     </Grid>
     

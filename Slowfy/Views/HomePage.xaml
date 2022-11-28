@@ -25,30 +25,26 @@
     </Grid>-->
     <Frame x:Name="ContentArea">
         <Grid>
-            <Grid.Resources>
-                <CollectionViewSource x:Name="cvsProjects" IsSourceGrouped="True" 
-                              ItemsPath="Customers"/>
-            </Grid.Resources>
-            <StackPanel Orientation="Horizontal" Margin="15,0,0,0" >
-            
-            
-        </StackPanel>
-            <ListView x:Name="TestView" SelectionChanged="TestView_SelectionChanged" ScrollViewer.HorizontalScrollMode="Enabled" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+            <StackPanel Orientation="Vertical" VerticalAlignment="Top">
+            <ListView x:Name="TestView" SelectionChanged="TestView_SelectionChanged" IsItemClickEnabled="True" ItemClick="TestView_ItemClick" ScrollViewer.HorizontalScrollMode="Enabled" ScrollViewer.HorizontalScrollBarVisibility="Auto">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Height="50">
+                        <Grid Height="45">
                             <StackPanel Orientation="Horizontal">
-                                <HyperlinkButton VerticalAlignment="Center">
+                                <!--<HyperlinkButton VerticalAlignment="Center" DataContext="{Binding}">
                                     <SymbolIcon Symbol ="Play" />
-                                </HyperlinkButton>
+                                </HyperlinkButton>-->
                                 <TextBlock Margin="10,0,0,0" Text="{Binding}" VerticalAlignment="Center"  TextWrapping="NoWrap"/>
                             </StackPanel>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        
-    </Grid>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
+            <MediaPlayerElement x:Name="Player" MaxWidth="2000" VerticalAlignment="Bottom" AutoPlay="True" AreTransportControlsEnabled="True" />
+        </StackPanel>
+        </Grid>
     </Frame>
     
 </Page>
