@@ -28,6 +28,7 @@ using System.Net.Http;
 using Windows.Storage;
 using Microsoft.VisualBasic;
 using Newtonsoft.Json.Linq;
+using PInvoke;
 
 namespace App2
 {
@@ -42,7 +43,7 @@ namespace App2
         public MainWindow()
         {
             this.InitializeComponent();
-            
+            Title = "Slowfy";
             ExtendsContentIntoTitleBar = true;
             SetTitleBar(AppTitleBar);
             TrySetSystemBackdrop();
@@ -50,7 +51,7 @@ namespace App2
 
         }
 
-        private async void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             if (State == "Reg")
             {
@@ -184,34 +185,31 @@ namespace App2
             NavigationView.SelectedItem = item;
         }
 
-        private async void NavigationView_Loaded(object sender,RoutedEventArgs e)
+        private async void NavigationView_Loaded(object sender, RoutedEventArgs e)
         {
 
             ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
 
             // load a setting that is local to the device
             String localValue = localSettings.Values["JwtToken"] as string;
-            //!!!!!!!!!!!!
-            //string result = await new ReqService().Get("https://localhost:7148/users/checktoken", localValue);
-            if (localValue != "bad")
+            String result = null;
+            if (localValue != null && localValue != "bad")
             {
 
-                if (localValue != null)
+                result = await new ReqService().Get("https://localhost:7148/users/checktoken", localValue);
+
+                if (result == "Ok")
                 {
+
                     ContentFrame.Navigate(typeof(HomePage));
 
                     SetCurrentNavigationViewItem(GetNavigationViewItems(typeof(HomePage)).First());
                     NavigationView.IsPaneVisible = true;
                 }
-
             }
-            else
-            {
-                ContentFrame.Navigate(typeof(MainWindow));
 
-                SetCurrentNavigationViewItem(GetNavigationViewItems(typeof(MainWindow)).First());
-                NavigationView.IsPaneVisible = true;
-            }
+           
+            
         }
 
         public List<NavigationViewItem> GetNavigationViewItems()

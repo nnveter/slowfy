@@ -18,6 +18,8 @@ using Microsoft.UI.Xaml.Navigation;
 using Windows.Storage;
 using App2;
 using System.Threading.Tasks;
+using static PInvoke.User32;
+using System.Diagnostics;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -52,7 +54,7 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
 
         
 
-        private async void bt_Click(object sender, RoutedEventArgs e)
+        private void bt_Click(object sender, RoutedEventArgs e)
         {
             ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
             localSettings.Values["JwtToken"] = null;
