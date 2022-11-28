@@ -3,6 +3,7 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,11 +16,19 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
         public HomePage()
         {
             this.InitializeComponent();
+            TestView.Items.Add("fssfzrdcthe3r");
         }
+
+        
 
         private void EditTask_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
         {
             // I need to work on this later :)
+            while (TestView.SelectedIndex > -1)
+            {
+            // Function to remove items
+            TestView.Items.RemoveAt(TestView.SelectedIndex);
+            }
         }
 
         // Event handler for "Add" button on Task page
@@ -27,7 +36,6 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
         {
             // Sets content dialog
             ContentDialog dialog = new CreateTaskDialog();
-            
             dialog.XamlRoot = this.XamlRoot;
 
             // Stores result for use in statement
@@ -36,21 +44,8 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
             // Statement to manage state detection and string handler
             if (result == ContentDialogResult.Primary)
             {
-                SuccessBar.IsOpen = true;
                 string addNewTask = (string)dialog.Tag;
-                CancelBar.IsOpen = false;
                 TestView.Items.Add(addNewTask);
-                // Waits 3 seconds then hides bar again
-                await Task.Delay(TimeSpan.FromSeconds(3));
-                SuccessBar.IsOpen = false;
-            }
-            else
-            {
-                CancelBar.IsOpen = true;
-                SuccessBar.IsOpen = false;
-                // Waits 3 seconds then hides bar again
-                await Task.Delay(TimeSpan.FromSeconds(3));
-                CancelBar.IsOpen = false;
             }
         }
 
@@ -58,12 +53,12 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
         private void TestView_SelectionChanged(object sender, SelectionChangedEventArgs e) // Event handler
         {
             // Looking at if the list is anything more than 0 items, they can be removed
-            while (TestView.SelectedIndex > -1)
-            {
-                // Function to remove items
-                TestView.Items.RemoveAt(TestView.SelectedIndex);
-            }
+            
         }
 
+        private void HyperlinkButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }

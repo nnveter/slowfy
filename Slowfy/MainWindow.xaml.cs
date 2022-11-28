@@ -44,6 +44,7 @@ namespace App2
         {
             this.InitializeComponent();
             Title = "Slowfy";
+            
             ExtendsContentIntoTitleBar = true;
             SetTitleBar(AppTitleBar);
             TrySetSystemBackdrop();

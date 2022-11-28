@@ -25,14 +25,14 @@
                    HorizontalAlignment="Left" 
                    Width="16" Height="16" 
                    Margin="8,0"/>
-                
-                <TextBlock x:Name="AppTitleTextBlock" Text="Slowfy"
-                       TextWrapping="NoWrap"
-                       Style="{StaticResource CaptionTextBlockStyle}" 
-                       VerticalAlignment="Center"
-                       Margin="28,0,0,0"/>
 
-            </Grid>
+                <TextBlock x:Name="AppTitleTextBlock" Text="Slowfy"
+                   TextWrapping="NoWrap"
+                   Style="{StaticResource CaptionTextBlockStyle}" 
+                   VerticalAlignment="Center"
+                   Margin="28,0,0,0"/>
+
+        </Grid>
 
         <NavigationView x:Name="NavigationView" Grid.Row="1" Canvas.ZIndex="0" Loaded="NavigationView_Loaded" 
                         SelectionChanged="NavigationView_SelectionChanged" 
