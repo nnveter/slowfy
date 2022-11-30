@@ -9,10 +9,12 @@ using Model;
 using User = Model.User;
 using System;
 using System.Text.Json;
+using Newtonsoft.Json;
+using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
 public class ReqService
 {
-    private HttpClient client;
+    public HttpClient client;
     public ReqService()
     {
         client = new HttpClient();
@@ -45,11 +47,18 @@ public class ReqService
         return res;
     }
 
-    //public async Task<string> GetProfile(string token, string url)
-    //{
-    //    String res = await Get(url, token);
-    //    User? result =
-    //            JsonSerializer.Deserialize<User>(res);
-    //    return result?.Name ?? "Error";
-    //}
+
+
+    public async Task<Track[]> GetTracks()
+    {
+        String res = await Get("https://localhost:7148/track");
+
+        //var result = JsonNode.Parse(res);
+
+        Track[] bsObj = JsonConvert.DeserializeObject<Track[]>(res);
+        Console.WriteLine(res);
+        return bsObj;
+    }
+
+
 }

@@ -42,7 +42,7 @@
             </ListView>
         </StackPanel>
         <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
-            <MediaPlayerElement  x:Name="Player" MaxWidth="2000" VerticalAlignment="Bottom" AutoPlay="True" AreTransportControlsEnabled="True" />
+                <MediaPlayerElement  x:Name="Player" MaxWidth="2000" VerticalAlignment="Bottom" AutoPlay="True" AreTransportControlsEnabled="True" />
         </StackPanel>
         </Grid>
     </Frame>

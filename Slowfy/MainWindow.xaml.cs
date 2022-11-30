@@ -132,6 +132,7 @@ namespace App2
                 ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
 
                 var res = response;
+                
                 if (res != "bad request")
                 {
                     localSettings.Values["Name"] = await new ReqService().Get("https://localhost:7148/users/GetMyName", response);
