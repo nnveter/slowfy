@@ -49,7 +49,7 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
         {
             ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
             String token = localSettings.Values["JwtToken"] as string;
-            textblock.Text = await new ReqService().Get("https://localhost:7148/users/GetMyName", token);
+            textblock.Text = await new ReqService().Get($"{Constants.URL}users/GetMyName", token);
         }
 
         

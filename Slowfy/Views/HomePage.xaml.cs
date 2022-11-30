@@ -14,6 +14,7 @@ using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using Windows.Media.Core;
 using Windows.Media.Protection.PlayReady;
+using Windows.Storage;
 
 namespace XamlBrewer.WinUI3.Navigation.Sample.Views
 {
@@ -39,7 +40,7 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
 
         private async void Pro()
         {
-            string result2 = await new ReqService().Get("https://localhost:7148/tracks");
+            string result2 = await new ReqService().Get($"{Constants.URL}tracks");
 
             List<Track> rec =
                 JsonSerializer.Deserialize<List<Track>>(result2);
@@ -87,6 +88,13 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
             if (TestView.SelectedIndex > -1)
             {
                 Player.Source = MediaSource.CreateFromUri(new Uri(trackName[TestView.SelectedIndex].source));
+
+                ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+
+                // load a setting that is local to the device
+                String localValue = localSettings.Values["JwtToken"] as string;
+
+                await new ReqService().Get($"{Constants.URL}Auditions/AddAudition?trackId=" + trackName[TestView.SelectedIndex].id, localValue);
                 //trackName = await new ReqService().GetTracks();
             }
         }

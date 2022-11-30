@@ -47,13 +47,13 @@ public class ReqService
 
     public async Task<List<Track>> GetTracks()
     {
-        //String res = await Get("https://localhost:7148/track");
+        //String res = await Get("track");
 
 
         //var result = JsonNode.Parse(res);
 
         //Track[] bsObj = JsonConvert.DeserializeObject<Track[]>(res);
-        string result2 = await new ReqService().Get("https://localhost:7148/tracks%22");
+        string result2 = await new ReqService().Get($"{Constants.URL}tracks%22");
 
         List<Track> rec =
                 JsonSerializer.Deserialize<List<Track>>(result2);

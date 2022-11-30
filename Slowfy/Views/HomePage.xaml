@@ -26,7 +26,7 @@
     <Frame x:Name="ContentArea">
         <Grid>
             <StackPanel Orientation="Vertical" VerticalAlignment="Top">
-            <ListView x:Name="TestView" SelectionChanged="TestView_SelectionChanged" IsItemClickEnabled="True" ItemClick="TestView_ItemClick" ScrollViewer.HorizontalScrollMode="Enabled" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+            <ListView  x:Name="TestView" SelectionChanged="TestView_SelectionChanged" IsItemClickEnabled="True" ItemClick="TestView_ItemClick" ScrollViewer.HorizontalScrollMode="Enabled" ScrollViewer.HorizontalScrollBarVisibility="Auto">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid Height="45">
@@ -41,9 +41,9 @@
                 </ListView.ItemTemplate>
             </ListView>
         </StackPanel>
-        <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
-                <MediaPlayerElement  x:Name="Player" MaxWidth="2000" VerticalAlignment="Bottom" AutoPlay="True" AreTransportControlsEnabled="True" />
-        </StackPanel>
+            <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
+                <MediaPlayerElement  x:Name="Player" MaxWidth="2000" VerticalAlignment="Bottom" AutoPlay="True" AreTransportControlsEnabled="True"/>
+            </StackPanel>
         </Grid>
     </Frame>
     

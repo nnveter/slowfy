@@ -92,7 +92,7 @@ namespace App2
             //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "Your Oauth token");
             if (State == "Reg")
             {
-                string response = await new ReqService().Post("https://localhost:7148/users/Create", new Dictionary<string, string>()
+                string response = await new ReqService().Post($"{Constants.URL}users/Create", new Dictionary<string, string>()
                 {
                     { "Email", Email1 },
                     { "Password", Password },
@@ -122,7 +122,7 @@ namespace App2
                 }
             }
             else {
-                string response = await new ReqService().Post("https://localhost:7148/users/Login", new Dictionary<string, string>()
+                string response = await new ReqService().Post($"{Constants.URL}users/Login", new Dictionary<string, string>()
                 {
                     { "Email", Email1 },
                     { "Password", Password },
@@ -135,7 +135,7 @@ namespace App2
                 
                 if (res != "bad request")
                 {
-                    localSettings.Values["Name"] = await new ReqService().Get("https://localhost:7148/users/GetMyName", response);
+                    localSettings.Values["Name"] = await new ReqService().Get($"{Constants.URL}users/GetMyName", response);
                     ProgressBar.Visibility = Visibility.Collapsed;
                     localSettings.Values["JwtToken"] = response;
                     ContentFrame.Navigate(typeof(HomePage));
@@ -210,7 +210,7 @@ namespace App2
             if (localValue != null && localValue != "bad")
             {
 
-                result = await new ReqService().Get("https://localhost:7148/users/checktoken", localValue);
+                result = await new ReqService().Get($"{Constants.URL}users/checktoken", localValue);
 
                 if (result == "Ok")
                 {
