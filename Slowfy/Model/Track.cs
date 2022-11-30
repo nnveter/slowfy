@@ -14,8 +14,4 @@ namespace App2.Model
         public int duration { get; set; }
         public string source { get; set; }
     }
-    public class ReturnedTrack
-    {
-        public Track record;
-    }
 }

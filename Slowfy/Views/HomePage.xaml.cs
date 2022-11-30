@@ -13,20 +13,21 @@ using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using Windows.Media.Core;
+using Windows.Media.Protection.PlayReady;
 
 namespace XamlBrewer.WinUI3.Navigation.Sample.Views
 {
     public sealed partial class HomePage : Page
     {
-        
-        public Track[] trackName;
+
+        public List<Track> trackName;
         public HomePage()
         {
             this.InitializeComponent();
 
             Pro();
             //TestView.Items.Add(trackName[1].title);
-
+            
             Player.TransportControls.IsZoomButtonVisible = false;
             Player.TransportControls.IsZoomEnabled = false;
             Player.TransportControls.IsPlaybackRateButtonVisible = false;
@@ -38,7 +39,17 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
 
         private async void Pro()
         {
-            trackName = await new ReqService().GetTracks();
+            string result2 = await new ReqService().Get("https://localhost:7148/tracks");
+
+            List<Track> rec =
+                JsonSerializer.Deserialize<List<Track>>(result2);
+            rec.Reverse();
+            trackName = rec;
+            foreach (Track track in rec)
+            {
+                TestView.Items.Add(track.title);
+            }
+            //trackName = await new ReqService().GetTracks();
             //TestView.Items.Add(trackName[0].id.ToString());
         }
 
@@ -70,12 +81,13 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
         }
 
         // Handles removal of items in the List.
-        private void TestView_SelectionChanged(object sender, SelectionChangedEventArgs e) // Event handler
+        private async void TestView_SelectionChanged(object sender, SelectionChangedEventArgs e) // Event handler
         {
             // Looking at if the list is anything more than 0 items, they can be removed
             if (TestView.SelectedIndex > -1)
             {
-                //Player.Source = MediaSource.CreateFromUri(new Uri(trackName[TestView.SelectedIndex].source));
+                Player.Source = MediaSource.CreateFromUri(new Uri(trackName[TestView.SelectedIndex].source));
+                //trackName = await new ReqService().GetTracks();
             }
         }
 

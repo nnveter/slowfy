@@ -9,8 +9,7 @@ using Model;
 using User = Model.User;
 using System;
 using System.Text.Json;
-using Newtonsoft.Json;
-using JsonSerializer = Newtonsoft.Json.JsonSerializer;
+using ABI.System;
 
 public class ReqService
 {
@@ -37,10 +36,7 @@ public class ReqService
         if (bearer != null) client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", bearer);
 
         var response = await client.GetAsync(url);
-        if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
-        {
-            return "bad";
-        }
+       
         String res = await response.Content.ReadAsStringAsync();
         res = res.TrimEnd('"');
         res = res.TrimStart('"');
@@ -49,15 +45,19 @@ public class ReqService
 
 
 
-    public async Task<Track[]> GetTracks()
+    public async Task<List<Track>> GetTracks()
     {
-        String res = await Get("https://localhost:7148/track");
+        //String res = await Get("https://localhost:7148/track");
+
 
         //var result = JsonNode.Parse(res);
 
-        Track[] bsObj = JsonConvert.DeserializeObject<Track[]>(res);
-        Console.WriteLine(res);
-        return bsObj;
+        //Track[] bsObj = JsonConvert.DeserializeObject<Track[]>(res);
+        string result2 = await new ReqService().Get("https://localhost:7148/tracks%22");
+
+        List<Track> rec =
+                JsonSerializer.Deserialize<List<Track>>(result2);
+        return rec;
     }
 
 
