@@ -26,7 +26,7 @@
     <Frame x:Name="ContentArea">
         <Grid>
             <StackPanel Orientation="Vertical" VerticalAlignment="Top">
-            <ListView  x:Name="TestView" SelectionChanged="TestView_SelectionChanged" IsItemClickEnabled="True" ItemClick="TestView_ItemClick" ScrollViewer.HorizontalScrollMode="Enabled" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+            <ListView   Margin="23,0,23,0" x:Name="TestView" SelectionChanged="TestView_SelectionChanged" IsItemClickEnabled="True" ItemClick="TestView_ItemClick" ScrollViewer.HorizontalScrollMode="Enabled" ScrollViewer.HorizontalScrollBarVisibility="Auto">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid Height="45">
@@ -34,7 +34,13 @@
                                 <!--<HyperlinkButton VerticalAlignment="Center" DataContext="{Binding}">
                                     <SymbolIcon Symbol ="Play" />
                                 </HyperlinkButton>-->
-                                <TextBlock Margin="10,0,0,0" Text="{Binding}" VerticalAlignment="Center"  TextWrapping="NoWrap"/>
+                                    <TextBlock Text="{Binding id}" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left"  Foreground="DarkGray" TextWrapping="NoWrap"/>
+                                    <TextBlock x:Name="titl" Margin="10,0,0,0" Text="{Binding title}" VerticalAlignment="Center"  TextWrapping="NoWrap"/>
+                                    
+                                </StackPanel>
+                                <TextBlock Text="{Binding author}" Margin="170,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"  Foreground="DarkGray" TextWrapping="NoWrap"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <TextBlock Text="{Binding duration}" FontSize="12" Margin="20,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right"  Foreground="DarkGray" TextWrapping="NoWrap"/>
                             </StackPanel>
                         </Grid>
                     </DataTemplate>
@@ -42,7 +48,7 @@
             </ListView>
         </StackPanel>
             <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
-                <MediaPlayerElement  Background="AliceBlue"  x:Name="Player" MaxWidth="2000" VerticalAlignment="Bottom" AutoPlay="True" AreTransportControlsEnabled="True"/>
+                <MediaPlayerElement x:Name="Player" MaxWidth="2000" VerticalAlignment="Bottom" AutoPlay="True" AreTransportControlsEnabled="True"/>
             </StackPanel>
         </Grid>
     </Frame>

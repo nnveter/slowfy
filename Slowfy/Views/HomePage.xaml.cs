@@ -44,11 +44,11 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
 
             List<Track> rec =
                 JsonSerializer.Deserialize<List<Track>>(result2);
-            rec.Reverse();
+            //rec.Reverse();
             trackName = rec;
             foreach (Track track in rec)
             {
-                TestView.Items.Add(track.title);
+                TestView.Items.Add(track);
             }
             //trackName = await new ReqService().GetTracks();
             //TestView.Items.Add(trackName[0].id.ToString());
@@ -90,6 +90,7 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
                 Player.Source = MediaSource.CreateFromUri(new Uri(trackName[TestView.SelectedIndex].source));
 
                 ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+
 
                 // load a setting that is local to the device
                 String localValue = localSettings.Values["JwtToken"] as string;

@@ -62,7 +62,7 @@
 
 
             <NavigationView.MenuItems>
-                <NavigationViewItem Content="Home"
+                <NavigationViewItem Content="Home" DataContext="Tracks"
                             Tag="XamlBrewer.WinUI3.Navigation.Sample.Views.HomePage"
                             ToolTipService.ToolTip="HomePage">
                     <NavigationViewItem.Icon>
@@ -70,7 +70,7 @@
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 
-                <NavigationViewItem Content="Find"
+                <NavigationViewItem Content="Find" DataContext="Find"
                             Tag="XamlBrewer.WinUI3.Navigation.Sample.Views.FindPage"
                             ToolTipService.ToolTip="FindPage">
                     <NavigationViewItem.Icon>
@@ -78,7 +78,7 @@
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 
-                <NavigationViewItem Language="ru-RU" Content="My music"
+                <NavigationViewItem Language="ru-RU" Content="My music" DataContext="My music"
                             Tag="XamlBrewer.WinUI3.Navigation.Sample.Views.MusicPage"
                             ToolTipService.ToolTip="MusicPage">
                     <NavigationViewItem.Icon>
@@ -86,7 +86,7 @@
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 
-                <NavigationViewItem  Visibility="Collapsed"
+                <NavigationViewItem  Visibility="Collapsed" DataContext="Tracks"
                             Tag="XamlBrewer.WinUI3.Navigation.Sample.Views.BlankPage1"
                             ToolTipService.ToolTip="Hwhome">
                     <NavigationViewItem.Icon>

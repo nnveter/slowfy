@@ -11,7 +11,8 @@ namespace App2.Model
         public int id { get; set; }
         public string author { get; set; }
         public string title { get; set; }
-        public int duration { get; set; }
+        public string duration { get; set; }
         public string source { get; set; }
+        public bool E { get; set; }
     }
 }
