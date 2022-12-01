@@ -26,6 +26,7 @@ public class ReqService
         var response = await client.PostAsync(url, data);
 
         String res = await response.Content.ReadAsStringAsync();
+
         res = res.TrimEnd('"');
         res = res.TrimStart('"');
         return res;
