@@ -29,6 +29,7 @@ using Windows.Storage;
 using Microsoft.VisualBasic;
 using Newtonsoft.Json.Linq;
 using PInvoke;
+using Windows.Media.Core;
 
 namespace App2
 {
@@ -53,6 +54,7 @@ namespace App2
 
         }
 
+       
         private void NavigationView_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
         {
             nav--;

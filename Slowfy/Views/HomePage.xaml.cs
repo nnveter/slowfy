@@ -3,6 +3,8 @@ using App2.Model;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media.Imaging;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -27,8 +29,8 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
             this.InitializeComponent();
 
             Pro();
-            //TestView.Items.Add(trackName[1].title);
             
+            //TestView.Items.Add(trackName[1].title);
             Player.TransportControls.IsZoomButtonVisible = false;
             Player.TransportControls.IsZoomEnabled = false;
             Player.TransportControls.IsPlaybackRateButtonVisible = false;
@@ -89,6 +91,7 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
             {
                 Player.Source = MediaSource.CreateFromUri(new Uri(trackName[TestView.SelectedIndex].source));
 
+
                 ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
 
 
@@ -112,6 +115,30 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
             
             
             
+        }
+
+        private async void OnTapped(object sender, TappedRoutedEventArgs e)
+        {
+            Image element = (Image)sender;
+
+            element.Source = new BitmapImage(new Uri("ms-appx:///Views/heart2.png"));
+            //element.Symbol = Symbol.SolidStar;
+            //element.Visibility = Visibility.Collapsed;
+            ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            String localValue = localSettings.Values["JwtToken"] as string;
+            await new ReqService().Get($"{Constants.URL}FavTracks/AddToFavourite?trackId=" + trackName[(int)element.DataContext - 1].id, localValue);
+        }
+
+        private async void but_Click(object sender, RoutedEventArgs e)
+        {
+            ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+
+
+            // load a setting that is local to the device
+            String localValue = localSettings.Values["JwtToken"] as string;
+            await new ReqService().Get($"{Constants.URL}FavTracks/AddToFavourite?trackId=" + trackName[TestView.SelectedIndex].id, localValue);
+           // Button a = (Button)TestView.SelectedItem;
+           // a.Content = localValue;
         }
     }
 }

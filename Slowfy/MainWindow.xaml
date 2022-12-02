@@ -45,7 +45,7 @@
             
             
             <NavigationView.FooterMenuItems>
-                <NavigationViewItem Content="Account"
+                <NavigationViewItem Content="Account" DataContext="Account"
                             Tag="XamlBrewer.WinUI3.Navigation.Sample.Views.AccountPage"
                             ToolTipService.ToolTip="AccountPage">
                     <NavigationViewItem.Icon>
@@ -86,6 +86,14 @@
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 
+                <!--<NavigationViewItem Language="ru-RU" Content="UI" DataContext="UI"
+                            Tag="XamlBrewer.WinUI3.Navigation.Sample.Views.UI"
+                            ToolTipService.ToolTip="MusicPage">
+                    <NavigationViewItem.Icon>
+                        <SymbolIcon Symbol ="Favorite" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>-->
+
                 <NavigationViewItem  Visibility="Collapsed" DataContext="Tracks"
                             Tag="XamlBrewer.WinUI3.Navigation.Sample.Views.BlankPage1"
                             ToolTipService.ToolTip="Hwhome">
@@ -101,6 +109,7 @@
 
             <Frame x:Name="ContentFrame">
                 <Grid>
+
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <TextBlock x:Name="TextBlock" HorizontalAlignment="Center" Margin="0,10,8,0" FontSize="21" VerticalAlignment="Center" Text="Create new account"/>
                         <TextBox x:Name="Name" Margin="0,10,8,0" Width="250" PlaceholderText="Name" />
@@ -120,10 +129,9 @@
                             IsClosable="False"
                             Message="" />
                     <HyperlinkButton x:Name="Hyperlink"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Content="Do you already have an account?" Click="Button_Click" />
-                        <Grid  VerticalAlignment="Bottom" >
+                    <Grid  VerticalAlignment="Bottom" >
                         <ProgressBar x:Name="ProgressBar" Visibility="Collapsed" IsIndeterminate="True" ShowPaused="False" ShowError="False" />
                     </Grid>
-
                 </Grid>
 
             </Frame>
