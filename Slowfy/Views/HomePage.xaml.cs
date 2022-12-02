@@ -83,6 +83,7 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
             }
         }
 
+
         // Handles removal of items in the List.
         private async void TestView_SelectionChanged(object sender, SelectionChangedEventArgs e) // Event handler
         {
@@ -103,12 +104,6 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
             }
         }
 
-        private void HyperlinkButton_Click(object sender, RoutedEventArgs e)
-        {
-            
-            
-        }
-
         private void TestView_ItemClick(object sender, ItemClickEventArgs e)
         {
 
@@ -120,7 +115,6 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
         private async void OnTapped(object sender, TappedRoutedEventArgs e)
         {
             Image element = (Image)sender;
-
             element.Source = new BitmapImage(new Uri("ms-appx:///Views/heart2.png"));
             //element.Symbol = Symbol.SolidStar;
             //element.Visibility = Visibility.Collapsed;
@@ -129,16 +123,5 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
             await new ReqService().Get($"{Constants.URL}FavTracks/AddToFavourite?trackId=" + trackName[(int)element.DataContext - 1].id, localValue);
         }
 
-        private async void but_Click(object sender, RoutedEventArgs e)
-        {
-            ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
-
-
-            // load a setting that is local to the device
-            String localValue = localSettings.Values["JwtToken"] as string;
-            await new ReqService().Get($"{Constants.URL}FavTracks/AddToFavourite?trackId=" + trackName[TestView.SelectedIndex].id, localValue);
-           // Button a = (Button)TestView.SelectedItem;
-           // a.Content = localValue;
-        }
     }
 }

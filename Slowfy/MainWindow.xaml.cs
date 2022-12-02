@@ -30,6 +30,8 @@ using Microsoft.VisualBasic;
 using Newtonsoft.Json.Linq;
 using PInvoke;
 using Windows.Media.Core;
+using Microsoft.UI.Xaml.Media.Imaging;
+using System.Xml.Linq;
 
 namespace App2
 {
@@ -193,6 +195,16 @@ namespace App2
             {
                 return;
             }
+
+            if ((String)item.DataContext == "My music")
+            {
+                ico.Source = new BitmapImage(new Uri("ms-appx:///Views/heart2.png"));
+            }
+            else 
+            {
+                ico.Source = new BitmapImage(new Uri("ms-appx:///Views/hear1.png"));
+            }
+
             nav++;
             NavigationView.IsBackEnabled = true;
             ContentFrame.Navigate(

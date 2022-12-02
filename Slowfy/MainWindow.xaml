@@ -82,7 +82,7 @@
                             Tag="XamlBrewer.WinUI3.Navigation.Sample.Views.MusicPage"
                             ToolTipService.ToolTip="MusicPage">
                     <NavigationViewItem.Icon>
-                        <SymbolIcon Symbol ="Favorite" />
+                        <ImageIcon x:Name="ico" Source="Views/hear1.png"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 

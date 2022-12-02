@@ -67,7 +67,6 @@
   <ItemGroup>
     <None Remove="Views\FindPage.xaml" />
     <None Remove="Views\SettingsPage.xaml" />
-    <None Remove="Views\StandardUICommandPage.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -112,9 +111,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Update="iconPath\bb.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="Views\hear1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -124,9 +120,6 @@
     <None Update="iconPath\icons8.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Page Update="Views\StandardUICommandPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Update="Views\SettingsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -9,7 +9,41 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    NavigationCacheMode="Enabled"
     Background="Transparent">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <AutoSuggestBox x:Name="Find" PlaceholderText="Type a control name" Margin="26,0,26,0"
+            TextChanged="AutoSuggestBox_TextChanged"
+            QueryIcon="Find"
+            QuerySubmitted="AutoSuggestBox_QuerySubmitted"
+            SuggestionChosen="AutoSuggestBox_SuggestionChosen"/>
 
-    
+            <ListView   Margin="23,0,23,0"  x:Name="TestView" SelectionChanged="TestView_SelectionChanged" IsItemClickEnabled="True" ItemClick="TestView_ItemClick" ScrollViewer.HorizontalScrollMode="Enabled" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Height="45">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding id}" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left"  Foreground="DarkGray" TextWrapping="NoWrap"/>
+                                <TextBlock x:Name="titl" Margin="10,0,0,0" Text="{Binding title}" VerticalAlignment="Center"  TextWrapping="NoWrap"/>
+
+                            </StackPanel>
+                            <TextBlock Text="{Binding author}" Margin="170,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"  Foreground="DarkGray" TextWrapping="NoWrap"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Button>
+                                    <Image Width="15" Source="hear1.png" Tapped="OnTapped" DataContext="{Binding listid}"/>
+                                </Button>
+                                <TextBlock  x:Name="tx" Text="{Binding duration}" FontSize="12" Margin="20,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right"  Foreground="DarkGray" TextWrapping="NoWrap"/>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
+            <MediaPlayerElement x:Name="Player" MaxWidth="2000" VerticalAlignment="Bottom" AutoPlay="True" AreTransportControlsEnabled="True"/>
+        </StackPanel>
+    </Grid>
+
 </Page>

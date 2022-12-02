@@ -13,6 +13,7 @@ namespace App2.Model
         public string title { get; set; }
         public string duration { get; set; }
         public string source { get; set; }
-        public bool E { get; set; }
+        public bool e { get; set; }
+        public int listid { get; set; } = 0;
     }
 }
