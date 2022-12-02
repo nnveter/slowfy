@@ -15,11 +15,15 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
     public sealed partial class MusicPage : Page
     {
         public List<Track> trackName;
+        public MediaPlayerElement Player;
+        public static StackPanel Stackpan;
         public MusicPage()
         {
             this.InitializeComponent();
 
             Pro();
+            Player = MainWindow.pl;
+            Stackpan = MainWindow.Stackpan;
 
             Player.TransportControls.IsZoomButtonVisible = false;
             Player.TransportControls.IsZoomEnabled = false;
@@ -88,7 +92,7 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
 
                 ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
 
-
+                Stackpan.Visibility = Visibility.Visible;
                 // load a setting that is local to the device
                 String localValue = localSettings.Values["JwtToken"] as string;
 

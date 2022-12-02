@@ -29,21 +29,22 @@
 
                             </StackPanel>
                             <TextBlock Text="{Binding author}" Margin="170,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"  Foreground="DarkGray" TextWrapping="NoWrap"/>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,28,0">
                                 <Button>
                                     <Image Width="15" Source="hear1.png" Tapped="OnTapped" DataContext="{Binding listid}"/>
                                 </Button>
                                 <TextBlock  x:Name="tx" Text="{Binding duration}" FontSize="12" Margin="20,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right"  Foreground="DarkGray" TextWrapping="NoWrap"/>
                             </StackPanel>
+                            <ImageIcon Visibility="{Binding e}" Width="17" Source="E.png" VerticalAlignment="Center" HorizontalAlignment="Right"  Foreground="DarkGray" />
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </StackPanel>
 
-        <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
+        <!--<StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
             <MediaPlayerElement x:Name="Player" MaxWidth="2000" VerticalAlignment="Bottom" AutoPlay="True" AreTransportControlsEnabled="True"/>
-        </StackPanel>
+        </StackPanel>-->
     </Grid>
 
 </Page>

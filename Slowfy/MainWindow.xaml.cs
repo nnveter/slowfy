@@ -42,19 +42,28 @@ namespace App2
         WindowsSystemDispatcherQueueHelper m_wsdqHelper; // See below for implementation.
         MicaController m_backdropController;
         SystemBackdropConfiguration m_configurationSource;
+
         int nav = 1;
         String State = "Reg";
+
+        public static MediaPlayerElement pl;
+        public static StackPanel Stackpan;
         public MainWindow()
         {
             this.InitializeComponent();
             Title = "Slowfy";
-            
+            pl = Player;
+            Stackpan = StackPan;
+
             ExtendsContentIntoTitleBar = true;
             SetTitleBar(AppTitleBar);
             TrySetSystemBackdrop();
             NavigationView.IsPaneVisible = false;
+
+
             ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
             String localValue = localSettings.Values["Name"] as string;
+
             if (DateTime.Now.Hour <= 24 && DateTime.Now.Hour >= 19)
             {
                 home.DataContext = "Добрый вечер, " + localValue;
@@ -71,6 +80,7 @@ namespace App2
             {
                 home.DataContext = "Засиделись? " + localValue;
             }
+
             find.DataContext = "Поиск";
             music.DataContext = "Моя медиотека";
             account.DataContext = "Аккаунт";
@@ -222,7 +232,7 @@ namespace App2
                 return;
             }
 
-            if ((String)item.DataContext == "My music")
+            if ((String)item.DataContext == "My music" || (String)item.DataContext == "Моя медиотека")
             {
                 ico.Source = new BitmapImage(new Uri("ms-appx:///Views/heart2.png"));
             }
@@ -231,12 +241,23 @@ namespace App2
                 ico.Source = new BitmapImage(new Uri("ms-appx:///Views/hear1.png"));
             }
 
+            if (((String)item.DataContext == "My music" || (String)item.DataContext == "Моя медиотека" ||
+                (String)item.DataContext == "Find" || (String)item.DataContext == "Поиск" ||
+                (String)item.DataContext == "Tracks" || (String)item.Content == "Главная") && Player.Source != null) 
+            {
+                StackPan.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                StackPan.Visibility = Visibility.Collapsed;
+            }
             nav++;
             NavigationView.IsBackEnabled = true;
             ContentFrame.Navigate(
             Type.GetType(item.Tag.ToString()),item.Content);
             NavigationView.Header = item.DataContext;
             NavigationView.SelectedItem = item;
+            
         }
 
         private async void NavigationView_Loaded(object sender, RoutedEventArgs e)

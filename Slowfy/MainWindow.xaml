@@ -106,37 +106,42 @@
             <NavigationView.PaneCustomContent>
                 <HyperlinkButton x:Name="PaneHyperlink" Content="More info" Margin="12,0" Visibility="Collapsed" />
             </NavigationView.PaneCustomContent>
+            <Grid>
+                <Frame x:Name="ContentFrame">
+                    <Grid>
 
-            <Frame x:Name="ContentFrame">
-                <Grid>
-
-                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <TextBlock x:Name="TextBlock" HorizontalAlignment="Center" Margin="0,10,8,0" FontSize="21" VerticalAlignment="Center" Text="Create new account"/>
-                        <TextBox x:Name="Name" Margin="0,10,8,0" Width="250" PlaceholderText="Name" />
-                        <TextBox x:Name="Email" Margin="0,10,8,0" Width="250" PlaceholderText="Email" />
-                        <PasswordBox PlaceholderText="Password" Name="passworBoxWithRevealmode" Width="250" Margin="0,10,8,0"
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock x:Name="TextBlock" HorizontalAlignment="Center" Margin="0,10,8,0" FontSize="21" VerticalAlignment="Center" Text="Create new account"/>
+                            <TextBox x:Name="Name" Margin="0,10,8,0" Width="250" PlaceholderText="Name" />
+                            <TextBox x:Name="Email" Margin="0,10,8,0" Width="250" PlaceholderText="Email" />
+                            <PasswordBox PlaceholderText="Password" Name="passworBoxWithRevealmode" Width="250" Margin="0,10,8,0"
                         PasswordRevealMode="Hidden" AutomationProperties.Name="Sample password box"/>
-                        <CheckBox Name="revealModeCheckBox" Margin="0,10,8,0" Content="Show password" IsChecked="False"
+                            <CheckBox Name="revealModeCheckBox" Margin="0,10,8,0" Content="Show password" IsChecked="False"
                         Checked="RevealModeCheckbox_Changed" Unchecked="RevealModeCheckbox_Changed"/>
-                        <Button x:Name="myButton" Margin="0,10,8,0" HorizontalAlignment="Center" Click="myButton_Click">Next</Button>
+                            <Button x:Name="myButton" Margin="0,10,8,0" HorizontalAlignment="Center" Click="myButton_Click">Next</Button>
 
-                    </StackPanel>
-                    <InfoBar HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                        </StackPanel>
+                        <InfoBar HorizontalAlignment="Right" VerticalAlignment="Bottom"
                             IsOpen="True"
                             Visibility="Collapsed"
                             x:Name="Info"
                             Severity="Error"
                             IsClosable="False"
                             Message="" />
-                    <HyperlinkButton x:Name="Hyperlink"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Content="Do you already have an account?" Click="Button_Click" />
-                    <Grid  VerticalAlignment="Bottom" >
-                        <ProgressBar x:Name="ProgressBar" Visibility="Collapsed" IsIndeterminate="True" ShowPaused="False" ShowError="False" />
+                        <HyperlinkButton x:Name="Hyperlink"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Content="Do you already have an account?" Click="Button_Click" />
+                        <Grid  VerticalAlignment="Bottom" >
+                            <ProgressBar x:Name="ProgressBar" Visibility="Collapsed" IsIndeterminate="True" ShowPaused="False" ShowError="False" />
+                        </Grid>
+
                     </Grid>
-                </Grid>
 
-            </Frame>
+                </Frame>
+                <StackPanel x:Name="StackPan" Orientation="Vertical" VerticalAlignment="Bottom" Visibility="Collapsed" HorizontalAlignment="Center">
+                    <MediaPlayerElement x:Name="Player" MaxWidth="2000" VerticalAlignment="Bottom" AutoPlay="True" AreTransportControlsEnabled="True"/>
+                </StackPanel>
+            </Grid>
 
-            
+
         </NavigationView>
         
 

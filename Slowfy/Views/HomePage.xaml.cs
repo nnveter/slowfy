@@ -24,12 +24,16 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
     {
 
         public List<Track> trackName;
+        public MediaPlayerElement Player;
+        public static StackPanel Stackpan;
         public HomePage()
         {
             this.InitializeComponent();
 
             Pro();
-            
+            Player = MainWindow.pl;
+            Stackpan = MainWindow.Stackpan;
+
             //TestView.Items.Add(trackName[1].title);
             Player.TransportControls.IsZoomButtonVisible = false;
             Player.TransportControls.IsZoomEnabled = false;
@@ -95,7 +99,7 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
 
                 ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
 
-
+                Stackpan.Visibility = Visibility.Visible;
                 // load a setting that is local to the device
                 String localValue = localSettings.Values["JwtToken"] as string;
 

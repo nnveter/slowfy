@@ -15,5 +15,6 @@ namespace App2.Model
         public string source { get; set; }
         public bool e { get; set; }
         public int listid { get; set; } = 0;
+        
     }
 }
