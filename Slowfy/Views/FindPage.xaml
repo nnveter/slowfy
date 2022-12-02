@@ -13,7 +13,7 @@
     Background="Transparent">
     <Grid>
         <StackPanel Orientation="Vertical">
-            <AutoSuggestBox x:Name="Find" PlaceholderText="Type a control name" Margin="26,0,26,0"
+            <AutoSuggestBox x:Name="Find" PlaceholderText="Enter track name" Margin="26,8,26,0"
             TextChanged="AutoSuggestBox_TextChanged"
             QueryIcon="Find"
             QuerySubmitted="AutoSuggestBox_QuerySubmitted"

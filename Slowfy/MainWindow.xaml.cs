@@ -53,6 +53,32 @@ namespace App2
             SetTitleBar(AppTitleBar);
             TrySetSystemBackdrop();
             NavigationView.IsPaneVisible = false;
+            ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            String localValue = localSettings.Values["Name"] as string;
+            if (DateTime.Now.Hour <= 24 && DateTime.Now.Hour >= 19)
+            {
+                home.DataContext = "Добрый вечер, " + localValue;
+            }
+            else if (DateTime.Now.Hour < 19 && DateTime.Now.Hour >= 9)
+            {
+                home.DataContext = "Добрый день, " + localValue;
+            }
+            else if (DateTime.Now.Hour < 9 && DateTime.Now.Hour >= 6)
+            {
+                home.DataContext = "Добрый утро, " + localValue;
+            }
+            else if (DateTime.Now.Hour < 6)
+            {
+                home.DataContext = "Засиделись? " + localValue;
+            }
+            find.DataContext = "Поиск";
+            music.DataContext = "Моя медиотека";
+            account.DataContext = "Аккаунт";
+            find.Content = "Поиск";
+            music.Content = "Моя медиотека";
+            home.Content = "Главная";
+            account.Content = "Аккаунт";
+            NavigationView.PaneTitle = "Меню";
 
         }
 

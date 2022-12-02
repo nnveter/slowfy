@@ -46,6 +46,7 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
             Player.TransportControls.IsPlaybackRateEnabled = true;
             Player.TransportControls.IsCompact = true;
             Pro();
+            Find.PlaceholderText = "¬ведите название трека";
         }
 
         private void AutoSuggestBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)

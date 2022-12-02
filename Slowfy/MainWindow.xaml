@@ -45,7 +45,7 @@
             
             
             <NavigationView.FooterMenuItems>
-                <NavigationViewItem Content="Account" DataContext="Account"
+                <NavigationViewItem x:Name="account" Content="Account" DataContext="Account"
                             Tag="XamlBrewer.WinUI3.Navigation.Sample.Views.AccountPage"
                             ToolTipService.ToolTip="AccountPage">
                     <NavigationViewItem.Icon>
@@ -62,15 +62,15 @@
 
 
             <NavigationView.MenuItems>
-                <NavigationViewItem Content="Home" DataContext="Tracks"
+                <NavigationViewItem x:Name="home" Content="Home" DataContext="Tracks"
                             Tag="XamlBrewer.WinUI3.Navigation.Sample.Views.HomePage"
                             ToolTipService.ToolTip="HomePage">
                     <NavigationViewItem.Icon>
-                        <SymbolIcon Symbol ="Audio" />
+                        <SymbolIcon Symbol ="Home" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 
-                <NavigationViewItem Content="Find" DataContext="Find"
+                <NavigationViewItem x:Name="find" Content="Find" DataContext="Find"
                             Tag="XamlBrewer.WinUI3.Navigation.Sample.Views.FindPage"
                             ToolTipService.ToolTip="FindPage">
                     <NavigationViewItem.Icon>
@@ -78,7 +78,7 @@
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 
-                <NavigationViewItem Language="ru-RU" Content="My music" DataContext="My music"
+                <NavigationViewItem x:Name="music" Language="ru-RU" Content="My music" DataContext="My music"
                             Tag="XamlBrewer.WinUI3.Navigation.Sample.Views.MusicPage"
                             ToolTipService.ToolTip="MusicPage">
                     <NavigationViewItem.Icon>
