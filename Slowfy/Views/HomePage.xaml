@@ -30,7 +30,7 @@
             <StackPanel Orientation="Vertical" VerticalAlignment="Top">
                 <TextBlock x:Name="PopularText" HorizontalAlignment="Left" FontSize="21"  Margin="15,25,0,10" Text="Popular tracks" Foreground="DarkGray"/>
                 <StackPanel Orientation="Horizontal">
-                    <Border  Background="#585858" Margin="35,0,5,0" CornerRadius="14" Width="225" Height="86">
+                        <Border x:Name="Border1" Visibility="Collapsed" Background="#585858" Margin="35,0,5,0" CornerRadius="14" Width="225" Height="86">
                         <Grid>
                             <StackPanel Orientation="Horizontal" AllowFocusOnInteraction="True">
                                 <Image x:Name="PopularImage" />
@@ -44,7 +44,7 @@
                             </Button>
                         </Grid>
                     </Border>
-                    <Border Background="#585858" Margin="35,0,5,0" CornerRadius="14" Width="225" Height="86">
+                        <Border x:Name="Border2" Visibility="Collapsed" Background="#585858" Margin="35,0,5,0" CornerRadius="14" Width="225" Height="86">
                         <Grid>
                             <StackPanel Orientation="Horizontal">
                                 <Image x:Name="PopularImage2" />
@@ -58,7 +58,7 @@
                             </Button>
                         </Grid>
                     </Border>
-                    <Border Background="#585858" Margin="35,0,5,0" CornerRadius="14" Width="225" Height="86">
+                        <Border x:Name="Border3" Visibility="Collapsed" Background="#585858" Margin="35,0,5,0" CornerRadius="14" Width="225" Height="86">
                         <Grid>
                             <StackPanel Orientation="Horizontal">
                                 <Image x:Name="PopularImage3" />
@@ -78,11 +78,12 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Grid Height="45">
-                                    <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding id}" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left"  Foreground="DarkGray" TextWrapping="NoWrap"/>
+                                    <StackPanel Orientation="Horizontal" Margin="13,0,0,0">
                                         <!--<HyperlinkButton VerticalAlignment="Center" DataContext="{Binding}">
                                     <SymbolIcon Symbol ="Play" />
                                 </HyperlinkButton>-->
-                                        <TextBlock Text="{Binding id}" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left"  Foreground="DarkGray" TextWrapping="NoWrap"/>
+                                        
                                         <Image Source="{Binding image}" Margin="13,0,0,0" Width="33"/>
                                         <TextBlock x:Name="titl" Margin="10,0,0,0" Text="{Binding title}" VerticalAlignment="Center"  TextWrapping="NoWrap"/>
 

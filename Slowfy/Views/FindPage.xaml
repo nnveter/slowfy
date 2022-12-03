@@ -24,8 +24,8 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid Height="45">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding id}" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left"  Foreground="DarkGray" TextWrapping="NoWrap"/>
+                                <TextBlock Text="{Binding id}" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left"  Foreground="DarkGray" TextWrapping="NoWrap"/>
+                                <StackPanel Orientation="Horizontal" Margin="13,0,0,0">
                                     <Image Source="{Binding image}" Margin="13,0,0,0" Width="33"/>
                                     <TextBlock x:Name="titl" Margin="10,0,0,0" Text="{Binding title}" VerticalAlignment="Center"  TextWrapping="NoWrap"/>
 

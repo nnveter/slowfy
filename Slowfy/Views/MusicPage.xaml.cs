@@ -47,7 +47,7 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
 
             List<Track> rec =
                 JsonSerializer.Deserialize<List<Track>>(result2);
-            //rec.Reverse();
+            rec.Reverse();
             trackName = rec;
             string result4;
             foreach (Track track in rec)

@@ -16,6 +16,7 @@ using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using Windows.Media.Core;
+using Windows.Media.Playback;
 using Windows.Media.Protection.PlayReady;
 using Windows.Storage;
 using Windows.UI.Composition;
@@ -31,7 +32,8 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
         public static TextBlock txtTitle;
         public static TextBlock txtAutor;
         public static List<Track> PopularTracks;
-
+        MediaPlayer _mediaPlayer;
+        DispatcherTimer dispatcherTimer;
 
         public HomePage()
         {
@@ -50,11 +52,57 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
             Player.TransportControls.IsPreviousTrackButtonVisible = true;
             Player.TransportControls.IsPlaybackRateEnabled = true;
             Player.TransportControls.IsCompact = true;
-
             PopularText.Text = "Популярные треки";
             PopularText2.Text = "Все треки";
-            
+            DispatcherTimerSetup();
+            //_mediaPlayer = new MediaPlayer();
+            //_mediaPlayer.MediaEnded += MediaEnded;
+            //Player.SetMediaPlayer(_mediaPlayer);
+
         }
+
+        //private async void MediaEnded(MediaPlayer sender, object args)
+        //{
+        //    txtAutor.Text = "1";
+
+
+        //}
+
+        public void DispatcherTimerSetup()
+        {
+            dispatcherTimer = new DispatcherTimer();
+            dispatcherTimer.Tick += dispatcherTimer_Tick;
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 15);
+            dispatcherTimer.Start();
+        }
+        public async void dispatcherTimer_Tick(object sender, object e)
+        {
+            string result3 = await new ReqService().Get($"{App2.Constants.URL}tracks/getmostpopulartracks?count=3");
+            PopularTracks =
+                JsonSerializer.Deserialize<List<Track>>(result3);
+            if (PopularTitle.Text != PopularTracks[0].title && PopularTAutor.Text != PopularTracks[0].author)
+            {
+                PopularTitle.Text = PopularTracks[0].title;
+                PopularTAutor.Text = PopularTracks[0].author;
+                PopularImage.Source = new BitmapImage(new Uri(PopularTracks[0].image));
+            }
+            if (PopularTitle2.Text != PopularTracks[0].title && PopularTAutor2.Text != PopularTracks[1].author)
+            {
+                PopularTitle2.Text = PopularTracks[1].title;
+                PopularTAutor2.Text = PopularTracks[1].author;
+                PopularImage2.Source = new BitmapImage(new Uri(PopularTracks[1].image));
+            }
+            if (PopularTitle3.Text != PopularTracks[0].title && PopularTAutor3.Text != PopularTracks[2].author)
+            {
+                PopularTitle3.Text = PopularTracks[2].title;
+                PopularTAutor3.Text = PopularTracks[2].author;
+                PopularImage3.Source = new BitmapImage(new Uri(PopularTracks[2].image));
+            }
+
+
+        }
+
+
 
         private async void Pro()
         {
@@ -82,10 +130,13 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
                 else { track.like = "ms-appx:///Views/hear1.png"; }
                 TestView.Items.Add(track);
             }
+            Border1.Visibility = Visibility.Visible;
             PopularTitle.Text = PopularTracks[0].title;
             PopularTAutor.Text = PopularTracks[0].author;
+            Border2.Visibility = Visibility.Visible;
             PopularTitle2.Text = PopularTracks[1].title;
             PopularTAutor2.Text = PopularTracks[1].author;
+            Border3.Visibility = Visibility.Visible;
             PopularTitle3.Text = PopularTracks[2].title;
             PopularTAutor3.Text = PopularTracks[2].author;
 
@@ -138,10 +189,13 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
 
                 Stackpan.Visibility = Visibility.Visible;
                 // load a setting that is local to the device
+                Player.MediaPlayer.AudioCategory = MediaPlayerAudioCategory.Media;
+                
                 String localValue = localSettings.Values["JwtToken"] as string;
                 localSettings.Values["LastSource"] = trackName[TestView.SelectedIndex].source;
                 localSettings.Values["LastTitle"] = trackName[TestView.SelectedIndex].title;
                 localSettings.Values["LastAutor"] = trackName[TestView.SelectedIndex].author;
+                localSettings.Values["LastId"] = trackName[TestView.SelectedIndex].id;
 
                 txtTitle.Text = trackName[TestView.SelectedIndex].title;
                 txtAutor.Text = trackName[TestView.SelectedIndex].author;

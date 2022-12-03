@@ -12,33 +12,33 @@
         <Grid>
             <ScrollViewer Margin="0,0,0,75" ZoomMode="Enabled" MaxZoomFactor="10"
               VerticalScrollMode="Enabled" VerticalScrollBarVisibility="Visible">
-                <StackPanel Orientation="Vertical" VerticalAlignment="Top">
-                    <ListView   Margin="23,0,23,0"  x:Name="TestView" SelectionChanged="TestView_SelectionChanged" IsItemClickEnabled="True" ItemClick="TestView_ItemClick" ScrollViewer.HorizontalScrollMode="Enabled" ScrollViewer.HorizontalScrollBarVisibility="Auto">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <Grid Height="45">
-                                    <StackPanel Orientation="Horizontal">
-                                        <!--<HyperlinkButton VerticalAlignment="Center" DataContext="{Binding}">
+            <StackPanel Orientation="Vertical" VerticalAlignment="Top">
+                <ListView   Margin="23,0,23,0"  x:Name="TestView" SelectionChanged="TestView_SelectionChanged" IsItemClickEnabled="True" ItemClick="TestView_ItemClick" ScrollViewer.HorizontalScrollMode="Enabled" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Height="45">
+                                    <TextBlock Text="{Binding id}" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left"  Foreground="DarkGray" TextWrapping="NoWrap"/>
+                                    <StackPanel Orientation="Horizontal" Margin="13,0,0,0">
+                                    <!--<HyperlinkButton VerticalAlignment="Center" DataContext="{Binding}">
                                     <SymbolIcon Symbol ="Play" />
                                 </HyperlinkButton>-->
-                                        <TextBlock Text="{Binding id}" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left"  Foreground="DarkGray" TextWrapping="NoWrap"/>
-                                        <Image Source="{Binding image}" Margin="13,0,0,0" Width="33"/>
-                                        <TextBlock x:Name="titl" Margin="10,0,0,0" Text="{Binding title}" VerticalAlignment="Center"  TextWrapping="NoWrap"/>
+                                    <Image Source="{Binding image}" Margin="13,0,0,0" Width="33"/>
+                                    <TextBlock x:Name="titl" Margin="10,0,0,0" Text="{Binding title}" VerticalAlignment="Center"  TextWrapping="NoWrap"/>
 
-                                    </StackPanel>
-                                    <TextBlock Text="{Binding author}" Margin="230,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"  Foreground="DarkGray" TextWrapping="NoWrap"/>
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,28,0">
-                                        <Button>
-                                            <Image Width="15" Source="{Binding like}" Tapped="OnTapped" Tag="{Binding id}"/>
-                                        </Button>
-                                        <TextBlock  x:Name="tx" Text="{Binding duration}" FontSize="12" Margin="20,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right"  Foreground="DarkGray" TextWrapping="NoWrap"/>
-                                    </StackPanel>
-                                    <ImageIcon Visibility="{Binding e}" Width="17" Source="E.png" VerticalAlignment="Center" HorizontalAlignment="Right"  Foreground="DarkGray" />
-                                </Grid>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </StackPanel>
+                                </StackPanel>
+                                <TextBlock Text="{Binding author}" Margin="230,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"  Foreground="DarkGray" TextWrapping="NoWrap"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,28,0">
+                                    <Button>
+                                        <Image Width="15" Source="{Binding like}" Tapped="OnTapped" Tag="{Binding id}"/>
+                                    </Button>
+                                    <TextBlock  x:Name="tx" Text="{Binding duration}" FontSize="12" Margin="20,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right"  Foreground="DarkGray" TextWrapping="NoWrap"/>
+                                </StackPanel>
+                                <ImageIcon Visibility="{Binding e}" Width="17" Source="E.png" VerticalAlignment="Center" HorizontalAlignment="Right"  Foreground="DarkGray" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
             </ScrollViewer>
             <!--<StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
                 <MediaPlayerElement x:Name="Player" MaxWidth="2000" VerticalAlignment="Bottom" AutoPlay="True" AreTransportControlsEnabled="True"/>
