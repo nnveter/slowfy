@@ -136,8 +136,18 @@
                     </Grid>
 
                 </Frame>
-                <StackPanel x:Name="StackPan" Orientation="Vertical" VerticalAlignment="Bottom" Visibility="Collapsed" HorizontalAlignment="Center">
-                    <MediaPlayerElement x:Name="Player" MaxWidth="2000" VerticalAlignment="Bottom" AutoPlay="True" AreTransportControlsEnabled="True"/>
+                <StackPanel x:Name="StackPan" Orientation="Vertical" CornerRadius="25" VerticalAlignment="Bottom" Visibility="Collapsed" HorizontalAlignment="Center" Background="#272727">
+                    
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical">
+                            <TextBlock x:Name="TxtTitle"  HorizontalAlignment="Left" Margin="15,0,5,0" VerticalAlignment="Bottom" Text="Pomny"/>
+                            <TextBlock x:Name="TxtAutor"  HorizontalAlignment="Left" Margin="15,0,5,0" VerticalAlignment="Bottom" Text="Pomny" FontSize="10" Foreground="DarkGray"/>
+                        </StackPanel>
+                        <MediaPlayerElement x:Name="Player" Margin="0,0,0,0" MaxWidth="650"  VerticalAlignment="Bottom" AutoPlay="True" AreTransportControlsEnabled="True"/>
+                        <!--<Button>
+                            <Image Width="15" Source="Views/hear1.png" Tapped="Image_Tapped"/>
+                        </Button>-->
+                    </StackPanel>
                 </StackPanel>
             </Grid>
 

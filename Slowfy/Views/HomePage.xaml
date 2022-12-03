@@ -25,32 +25,83 @@
     </Grid>-->
     <Frame x:Name="ContentArea">
         <Grid>
+            <ScrollViewer Margin="0,0,0,75" ZoomMode="Enabled" MaxZoomFactor="10"
+              VerticalScrollMode="Enabled" VerticalScrollBarVisibility="Visible">
             <StackPanel Orientation="Vertical" VerticalAlignment="Top">
-            <ListView   Margin="23,0,23,0"  x:Name="TestView" SelectionChanged="TestView_SelectionChanged" IsItemClickEnabled="True" ItemClick="TestView_ItemClick" ScrollViewer.HorizontalScrollMode="Enabled" ScrollViewer.HorizontalScrollBarVisibility="Auto">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Height="45">
+                <TextBlock x:Name="PopularText" HorizontalAlignment="Left" FontSize="21"  Margin="15,25,0,10" Text="Popular tracks" Foreground="DarkGray"/>
+                <StackPanel Orientation="Horizontal">
+                    <Border  Background="#585858" Margin="35,0,5,0" CornerRadius="14" Width="225" Height="86">
+                        <Grid>
+                            <StackPanel Orientation="Horizontal" AllowFocusOnInteraction="True">
+                                <Image x:Name="PopularImage" />
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock x:Name="PopularTitle" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,20,0,0" Text="123456789012"/>
+                                    <TextBlock x:Name="PopularTAutor" HorizontalAlignment="Left"  Margin="10,5,0,0" Text="Mazelov" Foreground="DarkGray"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <Button x:Name="PopularButton" Click="PopularButton_Click" Style="{StaticResource AccentButtonStyle}" Margin="0,0,5,5" CornerRadius="11"  HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                                <Image Height="12" Source="ms-appx:///Views/Play2.png"/>
+                            </Button>
+                        </Grid>
+                    </Border>
+                    <Border Background="#585858" Margin="35,0,5,0" CornerRadius="14" Width="225" Height="86">
+                        <Grid>
                             <StackPanel Orientation="Horizontal">
-                                <!--<HyperlinkButton VerticalAlignment="Center" DataContext="{Binding}">
+                                <Image x:Name="PopularImage2" />
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock x:Name="PopularTitle2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,20,0,0" Text="123456789012"/>
+                                    <TextBlock x:Name="PopularTAutor2" HorizontalAlignment="Left"  Margin="10,5,0,0" Text="Mazelov" Foreground="DarkGray"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <Button x:Name="PopularButton2" Click="PopularButton2_Click" Style="{StaticResource AccentButtonStyle}" Margin="0,0,5,5" CornerRadius="11"  HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                                <Image Height="12" Source="ms-appx:///Views/Play2.png"/>
+                            </Button>
+                        </Grid>
+                    </Border>
+                    <Border Background="#585858" Margin="35,0,5,0" CornerRadius="14" Width="225" Height="86">
+                        <Grid>
+                            <StackPanel Orientation="Horizontal">
+                                <Image x:Name="PopularImage3" />
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock x:Name="PopularTitle3" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,20,0,0" Text="123456789012"/>
+                                    <TextBlock x:Name="PopularTAutor3" HorizontalAlignment="Left"  Margin="10,5,0,0" Text="Mazelov" Foreground="DarkGray"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <Button x:Name="PopularButton3" Click="PopularButton3_Click" Style="{StaticResource AccentButtonStyle}" Margin="0,0,5,5" CornerRadius="11"  HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                                <Image Height="12" Source="ms-appx:///Views/Play2.png"/>
+                            </Button>
+                        </Grid>
+                    </Border>
+                </StackPanel>
+                <TextBlock x:Name="PopularText2" HorizontalAlignment="Left" FontSize="21"  Margin="15,25,0,0" Text="All tracks" Foreground="DarkGray"/>
+                    <ListView   Margin="23,0,23,0"  x:Name="TestView" SelectionChanged="TestView_SelectionChanged" IsItemClickEnabled="True" ItemClick="TestView_ItemClick" ScrollViewer.HorizontalScrollMode="Enabled" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Height="45">
+                                    <StackPanel Orientation="Horizontal">
+                                        <!--<HyperlinkButton VerticalAlignment="Center" DataContext="{Binding}">
                                     <SymbolIcon Symbol ="Play" />
                                 </HyperlinkButton>-->
-                                    <TextBlock Text="{Binding id}" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left"  Foreground="DarkGray" TextWrapping="NoWrap"/>
-                                    <TextBlock x:Name="titl" Margin="10,0,0,0" Text="{Binding title}" VerticalAlignment="Center"  TextWrapping="NoWrap"/>
-                                    
-                                </StackPanel>
-                                <TextBlock Text="{Binding author}" Margin="170,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"  Foreground="DarkGray" TextWrapping="NoWrap"/>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,28,0">
-                                    <Button>
-                                        <Image Width="15" Source="hear1.png" Tapped="OnTapped" DataContext="{Binding id}"/> 
-                                    </Button>
-                                    <TextBlock x:Name="tx" Text="{Binding duration}" FontSize="12" Margin="20,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right"  Foreground="DarkGray" TextWrapping="NoWrap"/>
-                                </StackPanel>
-                                <ImageIcon Visibility="{Binding e}" Width="17" Source="E.png" VerticalAlignment="Center" HorizontalAlignment="Right"  Foreground="DarkGray" />
-                            </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackPanel>
+                                        <TextBlock Text="{Binding id}" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left"  Foreground="DarkGray" TextWrapping="NoWrap"/>
+                                        <Image Source="{Binding image}" Margin="13,0,0,0" Width="33"/>
+                                        <TextBlock x:Name="titl" Margin="10,0,0,0" Text="{Binding title}" VerticalAlignment="Center"  TextWrapping="NoWrap"/>
+
+                                    </StackPanel>
+                                    <TextBlock Text="{Binding author}" Margin="230,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"  Foreground="DarkGray" TextWrapping="NoWrap"/>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,28,0">
+                                        <Button>
+                                            <Image Width="15" Source="{Binding like}" Tapped="OnTapped" Tag="{Binding id}" />
+
+                                        </Button>
+                                        <TextBlock x:Name="tx" Text="{Binding duration}" FontSize="12" Margin="20,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right"  Foreground="DarkGray" TextWrapping="NoWrap"/>
+                                    </StackPanel>
+                                    <ImageIcon Visibility="{Binding e}" Width="17" Source="E.png" VerticalAlignment="Center" HorizontalAlignment="Right"  Foreground="DarkGray" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
+            </ScrollViewer>
             <!--<StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
                 <MediaPlayerElement x:Name="Player" MaxWidth="2000" VerticalAlignment="Bottom" AutoPlay="True" AreTransportControlsEnabled="True"/>
             </StackPanel>-->

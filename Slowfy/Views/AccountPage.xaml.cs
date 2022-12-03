@@ -58,7 +58,8 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
         {
             ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
             localSettings.Values["JwtToken"] = null;
-            
+            localSettings.Values["LastSource"] = null;
+
         }
     }
 }

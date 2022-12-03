@@ -17,10 +17,13 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
         public List<Track> trackName;
         public MediaPlayerElement Player;
         public static StackPanel Stackpan;
+        public static TextBlock txtTitle;
+        public static TextBlock txtAutor;
         public MusicPage()
         {
             this.InitializeComponent();
-
+            txtAutor = MainWindow.txtAutor;
+            txtTitle = MainWindow.txtTitle;
             Pro();
             Player = MainWindow.pl;
             Stackpan = MainWindow.Stackpan;
@@ -46,8 +49,15 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
                 JsonSerializer.Deserialize<List<Track>>(result2);
             //rec.Reverse();
             trackName = rec;
+            string result4;
             foreach (Track track in rec)
             {
+                result4 = await new ReqService().Get($"{App2.Constants.URL}favtracks/isfavourite?trackId={track.id}", localValue);
+                if (result4 == "1")
+                {
+                    track.like = "ms-appx:///Views/heart2.png";
+                }
+                else { track.like = "ms-appx:///Views/hear1.png"; }
                 TestView.Items.Add(track);
             }
             //trackName = await new ReqService().GetTracks();
@@ -95,6 +105,12 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
                 Stackpan.Visibility = Visibility.Visible;
                 // load a setting that is local to the device
                 String localValue = localSettings.Values["JwtToken"] as string;
+                localSettings.Values["LastSource"] = trackName[TestView.SelectedIndex].source;
+                localSettings.Values["LastTitle"] = trackName[TestView.SelectedIndex].title;
+                localSettings.Values["LastAutor"] = trackName[TestView.SelectedIndex].author;
+
+                txtTitle.Text = trackName[TestView.SelectedIndex].title;
+                txtAutor.Text = trackName[TestView.SelectedIndex].author;
 
                 await new ReqService().Get($"{Constants.URL}Auditions/AddAudition?trackId=" + trackName[TestView.SelectedIndex].id, localValue);
                 //trackName = await new ReqService().GetTracks();
@@ -119,12 +135,25 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
         {
             Image element = (Image)sender;
 
-            element.Source = new BitmapImage(new Uri("ms-appx:///Views/hear1.png"));
-            //element.Symbol = Symbol.SolidStar;
-            //element.Visibility = Visibility.Collapsed;
             ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
-            String localValue = localSettings.Values["JwtToken"] as string;
-            await new ReqService().Get($"{Constants.URL}FavTracks/AddToFavourite?trackId=" + trackName[(int)element.DataContext - 1].id, localValue);
+            String localValue2 = localSettings.Values["JwtToken"] as string;
+
+            String result = await new ReqService().Get($"{App2.Constants.URL}favtracks/isfavourite?trackId={(int)element.Tag}", localValue2);
+            if (result == "1")
+            {
+                element.Source = new BitmapImage(new Uri("ms-appx:///Views/hear1.png"));
+                //element.Symbol = Symbol.SolidStar;
+                //element.Visibility = Visibility.Collapsed;
+                await new ReqService().Get($"{App2.Constants.URL}FavTracks/RemoveFromFavourites?trackId={(int)element.Tag}", localValue2);
+            }
+            else
+            {
+                element.Source = new BitmapImage(new Uri("ms-appx:///Views/heart2.png"));
+                //element.Symbol = Symbol.SolidStar;
+                //element.Visibility = Visibility.Collapsed;
+                await new ReqService().Get($"{App2.Constants.URL}FavTracks/AddToFavourite?trackId={(int)element.Tag}", localValue2);
+            }
+
         }
 
         private async void but_Click(object sender, RoutedEventArgs e)

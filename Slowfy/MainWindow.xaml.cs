@@ -32,6 +32,7 @@ using PInvoke;
 using Windows.Media.Core;
 using Microsoft.UI.Xaml.Media.Imaging;
 using System.Xml.Linq;
+using Windows.UI.ViewManagement;
 
 namespace App2
 {
@@ -48,17 +49,22 @@ namespace App2
 
         public static MediaPlayerElement pl;
         public static StackPanel Stackpan;
+        public static TextBlock txtTitle;
+        public static TextBlock txtAutor;
         public MainWindow()
         {
             this.InitializeComponent();
             Title = "Slowfy";
             pl = Player;
+            Player.MediaPlayer.Volume = 0.15;
             Stackpan = StackPan;
-
+            txtTitle = TxtTitle;
+            txtAutor = TxtAutor;
             ExtendsContentIntoTitleBar = true;
             SetTitleBar(AppTitleBar);
             TrySetSystemBackdrop();
             NavigationView.IsPaneVisible = false;
+            
 
 
             ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
@@ -82,10 +88,10 @@ namespace App2
             }
 
             find.DataContext = "Поиск";
-            music.DataContext = "Моя медиотека";
+            music.DataContext = "Моя медиатека";
             account.DataContext = "Аккаунт";
             find.Content = "Поиск";
-            music.Content = "Моя медиотека";
+            music.Content = "Моя медиатека";
             home.Content = "Главная";
             account.Content = "Аккаунт";
             NavigationView.PaneTitle = "Меню";
@@ -232,7 +238,7 @@ namespace App2
                 return;
             }
 
-            if ((String)item.DataContext == "My music" || (String)item.DataContext == "Моя медиотека")
+            if ((String)item.DataContext == "My music" || (String)item.DataContext == "Моя медиатека")
             {
                 ico.Source = new BitmapImage(new Uri("ms-appx:///Views/heart2.png"));
             }
@@ -241,7 +247,7 @@ namespace App2
                 ico.Source = new BitmapImage(new Uri("ms-appx:///Views/hear1.png"));
             }
 
-            if (((String)item.DataContext == "My music" || (String)item.DataContext == "Моя медиотека" ||
+            if (((String)item.DataContext == "My music" || (String)item.DataContext == "Моя медиатека" ||
                 (String)item.DataContext == "Find" || (String)item.DataContext == "Поиск" ||
                 (String)item.DataContext == "Tracks" || (String)item.Content == "Главная") && Player.Source != null) 
             {
@@ -251,6 +257,8 @@ namespace App2
             {
                 StackPan.Visibility = Visibility.Collapsed;
             }
+
+
             nav++;
             NavigationView.IsBackEnabled = true;
             ContentFrame.Navigate(
@@ -282,6 +290,17 @@ namespace App2
                     NavigationView.IsPaneVisible = true;
                     NavigationView.IsBackEnabled = false;
                     nav = 0;
+                    String Sc = localSettings.Values["LastSource"] as string;
+                    if (Sc != null)
+                    {
+                        String title = localSettings.Values["LastTitle"] as string;
+                        String autor = localSettings.Values["LastAutor"] as string;
+                        TxtTitle.Text = title;
+                        TxtAutor.Text = autor;
+                        Player.Source = MediaSource.CreateFromUri(new Uri(Sc));
+                        Player.MediaPlayer.Pause();
+                        StackPan.Visibility = Visibility.Visible;
+                    }
                 }
             }
 
@@ -411,6 +430,10 @@ namespace App2
             }
         }
 
+        private void Image_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+
+        }
     }
 
     class WindowsSystemDispatcherQueueHelper
