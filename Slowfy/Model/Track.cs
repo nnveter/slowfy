@@ -15,7 +15,7 @@ namespace App2.Model
         public string duration { get; set; }
         public string source { get; set; }
         public bool e { get; set; }
-        public int listid { get; set; } = 0;
+        public int listid { get; set; }
         public string like { get; set; } = "ms-appx:///Views/hear1.png";
         public string image { get; set; }
         

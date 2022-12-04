@@ -54,12 +54,15 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
             Player.TransportControls.IsCompact = true;
             PopularText.Text = "Популярные треки";
             PopularText2.Text = "Все треки";
+            PopularText.Visibility = Visibility.Collapsed;
+            PopularText2.Visibility = Visibility.Collapsed;
             DispatcherTimerSetup();
             //_mediaPlayer = new MediaPlayer();
             //_mediaPlayer.MediaEnded += MediaEnded;
             //Player.SetMediaPlayer(_mediaPlayer);
 
         }
+        
 
         //private async void MediaEnded(MediaPlayer sender, object args)
         //{
@@ -143,6 +146,9 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
             PopularImage.Source = new BitmapImage(new Uri(PopularTracks[0].image));
             PopularImage2.Source = new BitmapImage(new Uri(PopularTracks[1].image));
             PopularImage3.Source = new BitmapImage(new Uri(PopularTracks[2].image));
+
+            PopularText.Visibility = Visibility.Visible;
+            PopularText2.Visibility = Visibility.Visible;
 
             //trackName = await new ReqService().GetTracks();
             //TestView.Items.Add(trackName[0].id.ToString());

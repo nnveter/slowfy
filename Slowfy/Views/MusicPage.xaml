@@ -10,14 +10,26 @@
 
     <Frame x:Name="ContentArea">
         <Grid>
-            <ScrollViewer Margin="0,0,0,75" ZoomMode="Enabled" MaxZoomFactor="10"
+            <ScrollViewer Margin="0,10,0,75" ZoomMode="Enabled" MaxZoomFactor="10"
               VerticalScrollMode="Enabled" VerticalScrollBarVisibility="Visible">
-            <StackPanel Orientation="Vertical" VerticalAlignment="Top">
-                <ListView   Margin="23,0,23,0"  x:Name="TestView" SelectionChanged="TestView_SelectionChanged" IsItemClickEnabled="True" ItemClick="TestView_ItemClick" ScrollViewer.HorizontalScrollMode="Enabled" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal" Margin="35,15,0,0">
+                    <Image HorizontalAlignment="Left" Source="Love.png" Width="120" Height="120"/>
+                    <StackPanel VerticalAlignment="Center" Margin="23,0,0,0">
+                        <TextBlock x:Name="NamePlayList" Text="PlayList" Margin="0,0,0,20" FontSize="20"/>
+                        <TextBlock x:Name="FolowTracksText" Text="Folow Tracks" VerticalAlignment="Center" FontSize="30"/>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                            <TextBlock x:Name="Username" Text="Ilya"/>
+                            <TextBlock x:Name="CountTracks" Margin="15,0,0,0" Text="4 Tracks"/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" VerticalAlignment="Top">
+                <ListView   Margin="23,20,23,0"  x:Name="TestView" SelectionChanged="TestView_SelectionChanged" IsItemClickEnabled="True" ItemClick="TestView_ItemClick" ScrollViewer.HorizontalScrollMode="Enabled" ScrollViewer.HorizontalScrollBarVisibility="Auto">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid Height="45">
-                                    <TextBlock Text="{Binding id}" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left"  Foreground="DarkGray" TextWrapping="NoWrap"/>
+                                        <TextBlock Text="{Binding listid}" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left"  Foreground="DarkGray" TextWrapping="NoWrap"/>
                                     <StackPanel Orientation="Horizontal" Margin="13,0,0,0">
                                     <!--<HyperlinkButton VerticalAlignment="Center" DataContext="{Binding}">
                                     <SymbolIcon Symbol ="Play" />
@@ -39,10 +51,12 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </StackPanel>
-            </ScrollViewer>
+            
             <!--<StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
                 <MediaPlayerElement x:Name="Player" MaxWidth="2000" VerticalAlignment="Bottom" AutoPlay="True" AreTransportControlsEnabled="True"/>
             </StackPanel>-->
+            </StackPanel>
+            </ScrollViewer>
         </Grid>
     </Frame>
 </Page>

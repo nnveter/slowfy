@@ -19,6 +19,7 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
         public static StackPanel Stackpan;
         public static TextBlock txtTitle;
         public static TextBlock txtAutor;
+        public int idTrack;
         public MusicPage()
         {
             this.InitializeComponent();
@@ -35,6 +36,7 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
             Player.TransportControls.IsPreviousTrackButtonVisible = true;
             Player.TransportControls.IsPlaybackRateEnabled = true;
             Player.TransportControls.IsCompact = true;
+
         }
 
         private async void Pro()
@@ -50,6 +52,7 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
             rec.Reverse();
             trackName = rec;
             string result4;
+            idTrack = 1;
             foreach (Track track in rec)
             {
                 result4 = await new ReqService().Get($"{App2.Constants.URL}favtracks/isfavourite?trackId={track.id}", localValue);
@@ -58,10 +61,18 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
                     track.like = "ms-appx:///Views/heart2.png";
                 }
                 else { track.like = "ms-appx:///Views/hear1.png"; }
+                track.listid = idTrack;
                 TestView.Items.Add(track);
+                idTrack++;
             }
             //trackName = await new ReqService().GetTracks();
             //TestView.Items.Add(trackName[0].id.ToString());
+
+            String Name = localSettings.Values["Name"] as string;
+            NamePlayList.Text = "Плейлист";
+            FolowTracksText.Text = "Любимые треки";
+            Username.Text = Name;
+            CountTracks.Text = $"Всего треков: {rec.Count}";
         }
 
         private void EditTask_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)

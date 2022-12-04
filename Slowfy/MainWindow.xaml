@@ -82,6 +82,13 @@
                             Tag="XamlBrewer.WinUI3.Navigation.Sample.Views.MusicPage"
                             ToolTipService.ToolTip="MusicPage">
                     <NavigationViewItem.Icon>
+                        <ImageIcon Source="Views/hear1.png"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem Visibility="Collapsed" x:Name="autorization" Language="ru-RU" Content="Autorization" DataContext="Autorization"
+                            Tag="XamlBrewer.WinUI3.Navigation.Sample.Views.MusicPage"
+                            ToolTipService.ToolTip="AutorizationPage">
+                    <NavigationViewItem.Icon>
                         <ImageIcon x:Name="ico" Source="Views/hear1.png"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
@@ -154,6 +161,7 @@
 
         </NavigationView>
         
+            
 
     </Grid>
     

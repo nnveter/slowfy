@@ -33,6 +33,8 @@ using Windows.Media.Core;
 using Microsoft.UI.Xaml.Media.Imaging;
 using System.Xml.Linq;
 using Windows.UI.ViewManagement;
+using Windows.Media.Playback;
+using App2.Model;
 
 namespace App2
 {
@@ -51,11 +53,14 @@ namespace App2
         public static StackPanel Stackpan;
         public static TextBlock txtTitle;
         public static TextBlock txtAutor;
+        public static Frame ContentFr;
+        public static NavigationView Nav;
         public MainWindow()
         {
             this.InitializeComponent();
             Title = "Slowfy";
             pl = Player;
+            ContentFr = ContentFrame;
             Player.MediaPlayer.Volume = 0.15;
             Stackpan = StackPan;
             txtTitle = TxtTitle;
@@ -64,7 +69,7 @@ namespace App2
             SetTitleBar(AppTitleBar);
             TrySetSystemBackdrop();
             NavigationView.IsPaneVisible = false;
-            
+            Nav = NavigationView;
 
 
             ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
@@ -98,7 +103,8 @@ namespace App2
 
         }
 
-       
+
+
         private void NavigationView_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
         {
             nav--;
