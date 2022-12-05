@@ -1,26 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
-using App2.Model;
 using App2;
+using App2.Model;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
+using Microsoft.UI.Xaml.Media.Imaging;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Microsoft.UI.Xaml.Media.Imaging;
+using System.Text.Json;
 using Windows.Media.Core;
 using Windows.Storage;
-using System.Text.Json;
 
 
 // To learn more about WinUI, the WinUI project structure,
@@ -115,7 +106,7 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
                 TestView.Items.Add(track);
                 idTrack++;
             }
-            
+
         }
         private async void TestView_SelectionChanged(object sender, SelectionChangedEventArgs e) // Event handler
         {

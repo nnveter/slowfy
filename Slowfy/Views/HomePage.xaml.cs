@@ -3,23 +3,13 @@ using App2.Model;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Imaging;
-using PInvoke;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Reflection.Emit;
 using System.Text.Json;
-using System.Text.Json.Nodes;
-using System.Threading.Tasks;
 using Windows.Media.Core;
 using Windows.Media.Playback;
-using Windows.Media.Protection.PlayReady;
 using Windows.Storage;
-using Windows.UI.Composition;
 
 namespace XamlBrewer.WinUI3.Navigation.Sample.Views
 {
@@ -62,7 +52,7 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
             //Player.SetMediaPlayer(_mediaPlayer);
 
         }
-        
+
 
         //private async void MediaEnded(MediaPlayer sender, object args)
         //{
@@ -159,8 +149,8 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
             // I need to work on this later :)
             while (TestView.SelectedIndex > -1)
             {
-            // Function to remove items
-            //TestView.Items.RemoveAt(TestView.SelectedIndex);
+                // Function to remove items
+                //TestView.Items.RemoveAt(TestView.SelectedIndex);
             }
         }
 
@@ -196,7 +186,7 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
                 Stackpan.Visibility = Visibility.Visible;
                 // load a setting that is local to the device
                 Player.MediaPlayer.AudioCategory = MediaPlayerAudioCategory.Media;
-                
+
                 String localValue = localSettings.Values["JwtToken"] as string;
                 localSettings.Values["LastSource"] = trackName[TestView.SelectedIndex].source;
                 localSettings.Values["LastTitle"] = trackName[TestView.SelectedIndex].title;
@@ -214,9 +204,9 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
         private void TestView_ItemClick(object sender, ItemClickEventArgs e)
         {
 
-            
-            
-            
+
+
+
         }
 
         private async void OnTapped(object sender, TappedRoutedEventArgs e)
@@ -234,14 +224,14 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
                 //element.Visibility = Visibility.Collapsed;
                 await new ReqService().Get($"{App2.Constants.URL}FavTracks/RemoveFromFavourites?trackId={(int)element.Tag}", localValue2);
             }
-            else 
+            else
             {
                 element.Source = new BitmapImage(new Uri("ms-appx:///Views/heart2.png"));
                 //element.Symbol = Symbol.SolidStar;
                 //element.Visibility = Visibility.Collapsed;
                 await new ReqService().Get($"{App2.Constants.URL}FavTracks/AddToFavourite?trackId={(int)element.Tag}", localValue2);
             }
-            
+
         }
 
 

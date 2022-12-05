@@ -1,15 +1,12 @@
 ﻿namespace App2;
 
+using Model;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Threading.Tasks;
-using Windows.System;
-using Model;
-using User = Model.User;
-using System;
 using System.Text.Json;
-using ABI.System;
+using System.Threading.Tasks;
 
 public class ReqService
 {
@@ -37,7 +34,7 @@ public class ReqService
         if (bearer != null) client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", bearer);
 
         var response = await client.GetAsync(url);
-       
+
         String res = await response.Content.ReadAsStringAsync();
         res = res.TrimEnd('"');
         res = res.TrimStart('"');

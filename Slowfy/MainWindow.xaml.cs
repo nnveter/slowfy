@@ -1,24 +1,24 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+using Microsoft.UI.Composition.SystemBackdrops;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Media.Imaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.UI.Composition.SystemBackdrops;
+using System.Net.Http;
 using System.Runtime.InteropServices; // For DllImport
+using Windows.Media.Core;
+using Windows.Storage;
 using WinRT;
 using XamlBrewer.WinUI3.Navigation.Sample.Views;
-using System.Net.Http;
-using Windows.Storage;
-using Windows.Media.Core;
-using Microsoft.UI.Xaml.Media.Imaging;
 
 namespace App2
 {
-  
+
     public sealed partial class MainWindow : Window
     {
 
@@ -88,11 +88,12 @@ namespace App2
         private void NavigationView_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
         {
             nav--;
-            if (nav <= 0) {
+            if (nav <= 0)
+            {
                 NavigationView.IsBackEnabled = false;
             }
             ContentFrame.GoBack();
-            
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -104,7 +105,8 @@ namespace App2
                 Name.Visibility = Visibility.Collapsed;
                 Hyperlink.Content = "Don't have an account yet?";
             }
-            else {
+            else
+            {
                 State = "Reg";
                 TextBlock.Text = "Create new account";
                 Name.Visibility = Visibility.Visible;
@@ -153,7 +155,8 @@ namespace App2
 
                 }
             }
-            else {
+            else
+            {
                 string response = await new ReqService().Post($"{Constants.URL}users/Login", new Dictionary<string, string>()
                 {
                     { "Email", Email1 },
@@ -163,7 +166,7 @@ namespace App2
                 ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
 
                 var res = response;
-                
+
                 if (res != "bad request")
                 {
                     localSettings.Values["Name"] = await new ReqService().Get($"{Constants.URL}users/GetMyName", response);
@@ -219,14 +222,14 @@ namespace App2
             {
                 ico.Source = new BitmapImage(new Uri("ms-appx:///Views/heart2.png"));
             }
-            else 
+            else
             {
                 ico.Source = new BitmapImage(new Uri("ms-appx:///Views/hear1.png"));
             }
 
             if (((String)item.DataContext == "My music" || (String)item.DataContext == "Моя медиатека" ||
                 (String)item.DataContext == "Find" || (String)item.DataContext == "Поиск" ||
-                (String)item.DataContext == "Tracks" || (String)item.Content == "Главная") && Player.Source != null) 
+                (String)item.DataContext == "Tracks" || (String)item.Content == "Главная") && Player.Source != null)
             {
                 StackPan.Visibility = Visibility.Visible;
             }
@@ -239,10 +242,10 @@ namespace App2
             nav++;
             NavigationView.IsBackEnabled = true;
             ContentFrame.Navigate(
-            Type.GetType(item.Tag.ToString()),item.Content);
+            Type.GetType(item.Tag.ToString()), item.Content);
             NavigationView.Header = item.DataContext;
             NavigationView.SelectedItem = item;
-            
+
         }
 
         private async void NavigationView_Loaded(object sender, RoutedEventArgs e)
@@ -328,9 +331,9 @@ namespace App2
             void SetCurrentNavigationViewItem(NavigationViewItem item);
         }
 
-        
 
-       
+
+
 
 
 

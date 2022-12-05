@@ -1,11 +1,4 @@
-﻿using Microsoft.UI.Xaml.Controls;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace App2.Model
+﻿namespace App2.Model
 {
     public class Track
     {
@@ -18,6 +11,6 @@ namespace App2.Model
         public int listid { get; set; }
         public string like { get; set; } = "ms-appx:///Views/hear1.png";
         public string image { get; set; }
-        
+
     }
 }

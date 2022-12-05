@@ -16,6 +16,8 @@
     <AnalysisLevel>6.0-recommended</AnalysisLevel>
     <SignAssembly>False</SignAssembly>
     <ApplicationIcon>icons8-apple-music-bubbles-310.ico</ApplicationIcon>
+    <PackageCertificateThumbprint>211FBA2C0E1878EE78354DC3D870F498BAC3A75C</PackageCertificateThumbprint>
+    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
   </PropertyGroup>
   <ItemGroup>
     <Content Remove="Assets\BadgeLogo.scale-100.png" />
@@ -105,10 +107,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Views\MusicPage.xaml.cs">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Compile>
     <Compile Update="Views\HomePage.xaml.cs">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Compile>
   </ItemGroup>
   <ItemGroup>
