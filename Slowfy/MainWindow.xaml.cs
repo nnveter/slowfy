@@ -1,40 +1,20 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
-using Microsoft.UI;
-using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.ApplicationModel;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Microsoft.UI.Composition.SystemBackdrops;
 using System.Runtime.InteropServices; // For DllImport
 using WinRT;
-using WinRT.Interop;
-using Microsoft.Toolkit.Uwp.Notifications;
 using XamlBrewer.WinUI3.Navigation.Sample.Views;
 using System.Net.Http;
 using Windows.Storage;
-using Microsoft.VisualBasic;
-using Newtonsoft.Json.Linq;
-using PInvoke;
 using Windows.Media.Core;
 using Microsoft.UI.Xaml.Media.Imaging;
-using System.Xml.Linq;
-using Windows.UI.ViewManagement;
-using Windows.Media.Playback;
-using App2.Model;
 
 namespace App2
 {
@@ -59,17 +39,19 @@ namespace App2
         {
             this.InitializeComponent();
             Title = "Slowfy";
+
             pl = Player;
             ContentFr = ContentFrame;
-            Player.MediaPlayer.Volume = 0.15;
+            Nav = NavigationView;
             Stackpan = StackPan;
             txtTitle = TxtTitle;
             txtAutor = TxtAutor;
+
+            Player.MediaPlayer.Volume = 0.15;
             ExtendsContentIntoTitleBar = true;
             SetTitleBar(AppTitleBar);
             TrySetSystemBackdrop();
             NavigationView.IsPaneVisible = false;
-            Nav = NavigationView;
 
 
             ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
@@ -102,8 +84,6 @@ namespace App2
             NavigationView.PaneTitle = "Μενώ";
 
         }
-
-
 
         private void NavigationView_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
         {
@@ -180,7 +160,6 @@ namespace App2
                     { "Password", Password },
                 });
 
-
                 ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
 
                 var res = response;
@@ -202,9 +181,7 @@ namespace App2
                     Info.Message = res;
 
                 }
-
             }
-
         }
         private void RevealModeCheckbox_Changed(object sender, RoutedEventArgs e)
         {
@@ -217,12 +194,6 @@ namespace App2
                 passworBoxWithRevealmode.PasswordRevealMode = PasswordRevealMode.Hidden;
             }
         }
-
-
-
-
-
-
 
         private void NavigationView_SelectionChanged(
     NavigationView sender,
@@ -289,13 +260,12 @@ namespace App2
 
                 if (result == "Ok")
                 {
-
                     ContentFrame.Navigate(typeof(HomePage));
-
                     SetCurrentNavigationViewItem(GetNavigationViewItems(typeof(HomePage)).First());
                     NavigationView.IsPaneVisible = true;
                     NavigationView.IsBackEnabled = false;
                     nav = 0;
+
                     String Sc = localSettings.Values["LastSource"] as string;
                     if (Sc != null)
                     {
@@ -305,13 +275,11 @@ namespace App2
                         TxtAutor.Text = autor;
                         Player.Source = MediaSource.CreateFromUri(new Uri(Sc));
                         Player.MediaPlayer.Pause();
+
                         StackPan.Visibility = Visibility.Visible;
                     }
                 }
             }
-
-           
-            
         }
 
         public List<NavigationViewItem> GetNavigationViewItems()

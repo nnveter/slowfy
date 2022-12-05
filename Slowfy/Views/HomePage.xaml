@@ -88,11 +88,12 @@
                                         <TextBlock x:Name="titl" Margin="10,0,0,0" Text="{Binding title}" VerticalAlignment="Center"  TextWrapping="NoWrap"/>
 
                                     </StackPanel>
-                                    <TextBlock Text="{Binding author}" Margin="230,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"  Foreground="DarkGray" TextWrapping="NoWrap"/>
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="230,0,0,0">
+                                        <TextBlock Text="{Binding author}" VerticalAlignment="Center" HorizontalAlignment="Left"  Foreground="DarkGray" TextWrapping="NoWrap"/>
+                                    </StackPanel>
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,28,0">
                                         <Button>
                                             <Image Width="15" Source="{Binding like}" Tapped="OnTapped" Tag="{Binding id}" />
-
                                         </Button>
                                         <TextBlock x:Name="tx" Text="{Binding duration}" FontSize="12" Margin="20,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right"  Foreground="DarkGray" TextWrapping="NoWrap"/>
                                     </StackPanel>
