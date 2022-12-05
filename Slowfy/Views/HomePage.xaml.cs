@@ -42,6 +42,8 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
             Player.TransportControls.IsPreviousTrackButtonVisible = true;
             Player.TransportControls.IsPlaybackRateEnabled = true;
             Player.TransportControls.IsCompact = true;
+            Player.TransportControls.IsRepeatButtonVisible = true;
+            Player.TransportControls.IsRepeatEnabled = true;
             PopularText.Text = "Популярные треки";
             PopularText2.Text = "Все треки";
             PopularText.Visibility = Visibility.Collapsed;

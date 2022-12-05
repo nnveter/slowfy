@@ -34,7 +34,9 @@
 
         </Grid>
 
-        <NavigationView x:Name="NavigationView" Grid.Row="1" Canvas.ZIndex="0" Loaded="NavigationView_Loaded" 
+        <!--<MediaElement MediaEnded="eventhandler"/>-->
+
+            <NavigationView x:Name="NavigationView" Grid.Row="1" Canvas.ZIndex="0" Loaded="NavigationView_Loaded" 
                         SelectionChanged="NavigationView_SelectionChanged" 
                         IsBackButtonVisible="Collapsed"
                         IsSettingsVisible="False" BackRequested="NavigationView_BackRequested"  IsBackEnabled="True" AlwaysShowHeader="True" PaneTitle="menu"
