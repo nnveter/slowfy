@@ -112,10 +112,39 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
 
                 if (res != "bad request")
                 {
+
+                    String Datacontext = "Треки";
+                    String localValue2 = localSettings.Values["Name"] as string;
+
+                    if (DateTime.Now.Hour <= 24 && DateTime.Now.Hour >= 19)
+                    {
+                        Datacontext = "Добрый вечер, " + localValue2;
+                    }
+                    else if (DateTime.Now.Hour < 19 && DateTime.Now.Hour >= 9)
+                    {
+                        Datacontext = "Добрый день, " + localValue2;
+                    }
+                    else if (DateTime.Now.Hour < 9 && DateTime.Now.Hour >= 6)
+                    {
+                        Datacontext = "Добрый утро, " + localValue2;
+                    }
+                    else if (DateTime.Now.Hour < 6)
+                    {
+                        Datacontext = "Засиделись? " + localValue2;
+                    }
+
+
+
                     localSettings.Values["Name"] = await new ReqService().Get($"{Constants.URL}users/GetMyName", response);
                     ProgressBar.Visibility = Visibility.Collapsed;
                     localSettings.Values["JwtToken"] = response;
                     ContentFrame.Navigate(typeof(HomePage));
+
+                    MainWindow.Nav.IsBackEnabled = true;
+                    ContentFrame.Navigate(
+                    Type.GetType("XamlBrewer.WinUI3.Navigation.Sample.Views.HomePage"), "Home");
+                    MainWindow.Nav.Header = Datacontext;
+                    MainWindow.Nav.SelectedItem = typeof(HomePage);
 
                     navigationView.IsPaneVisible = true;
                 }

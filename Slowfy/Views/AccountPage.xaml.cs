@@ -60,7 +60,10 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
             localSettings.Values["JwtToken"] = null;
             localSettings.Values["LastSource"] = null;
             MainWindow.ContentFr.Navigate(typeof(Registration));
-            
+            MainWindow.ContentFr.Navigate(
+            Type.GetType("XamlBrewer.WinUI3.Navigation.Sample.Views.Registration"), "Autorization");
+            MainWindow.Nav.Header = "";
+
             MainWindow.Nav.IsPaneVisible = false;
 
         }

@@ -13,7 +13,7 @@
 
     <Grid>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <PersonPicture Margin="20,5,0,0" ProfilePicture="https://docs.microsoft.com/windows/uwp/contacts-and-calendar/images/shoulder-tap-static-payload.png" />
+            <!--<PersonPicture Margin="20,5,0,0" ProfilePicture="https://docs.microsoft.com/windows/uwp/contacts-and-calendar/images/shoulder-tap-static-payload.png" />-->
             <TextBlock FontSize="23" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Center" x:Name="textblock" Text=""/>
         </StackPanel>
         <Button x:Name="bt" HorizontalAlignment="Right" Style="{StaticResource AccentButtonStyle}" VerticalAlignment="Bottom" Content="Log Out" Click="bt_Click"/>
