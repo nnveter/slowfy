@@ -220,7 +220,6 @@ namespace App2
             {
                 return;
             }
-
             if ((String)item.DataContext == "My music" || (String)item.DataContext == "Моя медиатека")
             {
                 ico.Source = new BitmapImage(new Uri("ms-appx:///Views/heart2.png"));
@@ -229,6 +228,7 @@ namespace App2
             {
                 ico.Source = new BitmapImage(new Uri("ms-appx:///Views/hear1.png"));
             }
+            
 
             if (((String)item.DataContext == "My music" || (String)item.DataContext == "Моя медиатека" ||
                 (String)item.DataContext == "Find" || (String)item.DataContext == "Поиск" ||
