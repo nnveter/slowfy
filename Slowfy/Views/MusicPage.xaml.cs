@@ -8,7 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using Windows.Media.Core;
+using Windows.Media.Playback;
 using Windows.Storage;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace XamlBrewer.WinUI3.Navigation.Sample.Views
 {
@@ -20,6 +22,8 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
         public static TextBlock txtTitle;
         public static TextBlock txtAutor;
         public int idTrack;
+        public static DispatcherTimer dispatcherTimer = new DispatcherTimer();
+        public static int next = 0;
         public MusicPage()
         {
             this.InitializeComponent();
@@ -29,6 +33,9 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
             Player = MainWindow.pl;
             Stackpan = MainWindow.Stackpan;
 
+            HomePage.dispatcherTimer.Stop();
+            Player.MediaPlayer.MediaEnded += MediaPlayer_MediaEnded;
+
             Player.TransportControls.IsZoomButtonVisible = false;
             Player.TransportControls.IsZoomEnabled = false;
             Player.TransportControls.IsPlaybackRateButtonVisible = false;
@@ -36,6 +43,56 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
             Player.TransportControls.IsPreviousTrackButtonVisible = true;
             Player.TransportControls.IsPlaybackRateEnabled = true;
             Player.TransportControls.IsCompact = true;
+            DispatcherTimerSetup2();
+        }
+
+        private void MediaPlayer_MediaEnded(MediaPlayer sender, object args)
+        {
+            next++;
+        }
+
+        public void DispatcherTimerSetup2()
+        {
+            dispatcherTimer.Tick += dispatcherTimer_Tick2;
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
+            dispatcherTimer.Start();
+        }
+        public async void dispatcherTimer_Tick2(object sender, object e)
+        {
+
+            if (MainWindow.Page_ != "XamlBrewer.WinUI3.Navigation.Sample.Views.MusicPage")
+            {
+                dispatcherTimer.Stop();
+            }
+            else
+            {
+                if (next == 1 && MainWindow.Page_ == "XamlBrewer.WinUI3.Navigation.Sample.Views.MusicPage")
+                {
+                    if (TestView.SelectedIndex < trackName.Count)
+                    {
+                        TestView.SelectedItem = TestView.SelectedIndex + 1;
+                        TestView.SelectedIndex = TestView.SelectedIndex + 1;
+                        next = 0;
+                        Player.Source = MediaSource.CreateFromUri(new Uri(trackName[TestView.SelectedIndex].source));
+
+                        ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+
+                        Stackpan.Visibility = Visibility.Visible;
+
+                        String localValue = localSettings.Values["JwtToken"] as string;
+                        localSettings.Values["LastSource"] = trackName[TestView.SelectedIndex].source;
+                        localSettings.Values["LastTitle"] = trackName[TestView.SelectedIndex].title;
+                        localSettings.Values["LastAutor"] = trackName[TestView.SelectedIndex].author;
+                        localSettings.Values["LastId"] = trackName[TestView.SelectedIndex].id;
+
+                        txtTitle.Text = trackName[TestView.SelectedIndex].title;
+                        txtAutor.Text = trackName[TestView.SelectedIndex].author;
+
+                        await new ReqService().Get($"{App2.Constants.URL}Auditions/AddAudition?trackId=" + trackName[TestView.SelectedIndex].id, localValue);
+
+                    }
+                }
+            }
 
         }
 
@@ -144,7 +201,7 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
 
         private async void OnTapped(object sender, TappedRoutedEventArgs e)
         {
-            Image element = (Image)sender;
+            Microsoft.UI.Xaml.Controls.Image element = (Microsoft.UI.Xaml.Controls.Image)sender;
 
             ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
             String localValue2 = localSettings.Values["JwtToken"] as string;

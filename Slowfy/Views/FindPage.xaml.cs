@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Text.Json;
 using Windows.Media.Core;
 using Windows.Storage;
+using static System.Net.Mime.MediaTypeNames;
 
 
 // To learn more about WinUI, the WinUI project structure,
@@ -30,6 +31,8 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
         public static StackPanel Stackpan;
         public static TextBlock txtTitle;
         public static TextBlock txtAutor;
+        DispatcherTimer dispatcherTimer;
+        public static int next = 0;
         public FindPage()
         {
             this.InitializeComponent();
@@ -37,7 +40,6 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
             txtTitle = MainWindow.txtTitle;
             Player = MainWindow.pl;
             Stackpan = MainWindow.Stackpan;
-
             Player.TransportControls.IsZoomButtonVisible = false;
             Player.TransportControls.IsZoomEnabled = false;
             Player.TransportControls.IsPlaybackRateButtonVisible = false;
@@ -47,6 +49,58 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
             Player.TransportControls.IsCompact = true;
             Pro();
             Find.PlaceholderText = "¬ведите название трека";
+            Player.MediaPlayer.MediaEnded += MediaPlayer_MediaEnded;
+            DispatcherTimerSetup2();
+        }
+
+        private void MediaPlayer_MediaEnded(Windows.Media.Playback.MediaPlayer sender, object args)
+        {
+            next++;
+        }
+
+        public void DispatcherTimerSetup2()
+        {
+            dispatcherTimer = new DispatcherTimer();
+            dispatcherTimer.Tick += dispatcherTimer_Tick2;
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
+            dispatcherTimer.Start();
+        }
+        public async void dispatcherTimer_Tick2(object sender, object e)
+        {
+            if (MainWindow.Page_ != "XamlBrewer.WinUI3.Navigation.Sample.Views.FindPage")
+            {
+                dispatcherTimer.Stop();
+            }
+            else
+            {
+                if (next == 1 && MainWindow.Page_ == "XamlBrewer.WinUI3.Navigation.Sample.Views.FindPage")
+                {
+                    if (TestView.SelectedIndex < trackName.Count)
+                    {
+                        TestView.SelectedItem = TestView.SelectedIndex + 1;
+                        TestView.SelectedIndex = TestView.SelectedIndex + 1;
+                        next = 0;
+                        Player.Source = MediaSource.CreateFromUri(new Uri(trackName[TestView.SelectedIndex].source));
+
+                        ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+
+                        Stackpan.Visibility = Visibility.Visible;
+
+                        String localValue = localSettings.Values["JwtToken"] as string;
+                        localSettings.Values["LastSource"] = trackName[TestView.SelectedIndex].source;
+                        localSettings.Values["LastTitle"] = trackName[TestView.SelectedIndex].title;
+                        localSettings.Values["LastAutor"] = trackName[TestView.SelectedIndex].author;
+                        localSettings.Values["LastId"] = trackName[TestView.SelectedIndex].id;
+
+                        txtTitle.Text = trackName[TestView.SelectedIndex].title;
+                        txtAutor.Text = trackName[TestView.SelectedIndex].author;
+
+                        await new ReqService().Get($"{App2.Constants.URL}Auditions/AddAudition?trackId=" + trackName[TestView.SelectedIndex].id, localValue);
+
+                    }
+                }
+            }
+
         }
 
         private void AutoSuggestBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
@@ -143,7 +197,7 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
 
         private async void OnTapped(object sender, TappedRoutedEventArgs e)
         {
-            Image element = (Image)sender;
+            Microsoft.UI.Xaml.Controls.Image element = (Microsoft.UI.Xaml.Controls.Image)sender;
 
             ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
             String localValue2 = localSettings.Values["JwtToken"] as string;

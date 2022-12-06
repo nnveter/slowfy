@@ -10,6 +10,7 @@ using System.Text.Json;
 using Windows.Media.Core;
 using Windows.Media.Playback;
 using Windows.Storage;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace XamlBrewer.WinUI3.Navigation.Sample.Views
 {
@@ -22,8 +23,8 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
         public static TextBlock txtTitle;
         public static TextBlock txtAutor;
         public static List<Track> PopularTracks;
-        MediaPlayer _mediaPlayer;
-        DispatcherTimer dispatcherTimer;
+        public static DispatcherTimer dispatcherTimer = new DispatcherTimer();
+        public static int next = 0;
 
         public HomePage()
         {
@@ -48,10 +49,53 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
             PopularText2.Text = "Все треки";
             PopularText.Visibility = Visibility.Collapsed;
             PopularText2.Visibility = Visibility.Collapsed;
+            Player.MediaPlayer.MediaEnded += MediaPlayer_MediaEnded;
             DispatcherTimerSetup();
+            DispatcherTimerSetup2();
             //_mediaPlayer = new MediaPlayer();
             //_mediaPlayer.MediaEnded += MediaEnded;
             //Player.SetMediaPlayer(_mediaPlayer);
+
+        }
+
+        private void MediaPlayer_MediaEnded(MediaPlayer sender, object args)
+        {
+            next++;
+        }
+
+        public void DispatcherTimerSetup2()
+        {
+            dispatcherTimer.Tick += dispatcherTimer_Tick2;
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
+            dispatcherTimer.Start();
+        }
+        public async void dispatcherTimer_Tick2(object sender, object e)
+        {
+            if (next == 1 && MainWindow.Page_ == "XamlBrewer.WinUI3.Navigation.Sample.Views.HomePage") {
+                if (TestView.SelectedIndex < trackName.Count)
+                {
+                    TestView.SelectedItem = TestView.SelectedIndex + 1;
+                    TestView.SelectedIndex = TestView.SelectedIndex + 1;
+                    next = 0;
+                    Player.Source = MediaSource.CreateFromUri(new Uri(trackName[TestView.SelectedIndex].source));
+                        
+                    ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+
+                    Stackpan.Visibility = Visibility.Visible;
+
+                    String localValue = localSettings.Values["JwtToken"] as string;
+                    localSettings.Values["LastSource"] = trackName[TestView.SelectedIndex].source;
+                    localSettings.Values["LastTitle"] = trackName[TestView.SelectedIndex].title;
+                    localSettings.Values["LastAutor"] = trackName[TestView.SelectedIndex].author;
+                    localSettings.Values["LastId"] = trackName[TestView.SelectedIndex].id;
+
+                    txtTitle.Text = trackName[TestView.SelectedIndex].title;
+                    txtAutor.Text = trackName[TestView.SelectedIndex].author;
+
+                    await new ReqService().Get($"{App2.Constants.URL}Auditions/AddAudition?trackId=" + trackName[TestView.SelectedIndex].id, localValue);
+
+                }
+            }
 
         }
 
@@ -93,7 +137,6 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
                 PopularTAutor3.Text = PopularTracks[2].author;
                 PopularImage3.Source = new BitmapImage(new Uri(PopularTracks[2].image));
             }
-
 
         }
 
@@ -177,6 +220,11 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
         // Handles removal of items in the List.
         private async void TestView_SelectionChanged(object sender, SelectionChangedEventArgs e) // Event handler
         {
+            if (MainWindow.Page_ == "XamlBrewer.WinUI3.Navigation.Sample.Views.HomePage")
+            {
+                dispatcherTimer.Stop();
+                dispatcherTimer.Start();
+            }
             // Looking at if the list is anything more than 0 items, they can be removed
             if (TestView.SelectedIndex > -1)
             {
@@ -213,7 +261,7 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
 
         private async void OnTapped(object sender, TappedRoutedEventArgs e)
         {
-            Image element = (Image)sender;
+            Microsoft.UI.Xaml.Controls.Image element = (Microsoft.UI.Xaml.Controls.Image)sender;
 
             ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
             String localValue2 = localSettings.Values["JwtToken"] as string;

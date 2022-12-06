@@ -12,7 +12,9 @@ using System.Linq;
 using System.Net.Http;
 using System.Runtime.InteropServices; // For DllImport
 using Windows.Media.Core;
+using Windows.Media.Playback;
 using Windows.Storage;
+using Windows.System.Display;
 using WinRT;
 using XamlBrewer.WinUI3.Navigation.Sample.Views;
 
@@ -35,6 +37,7 @@ namespace App2
         public static TextBlock txtAutor;
         public static Frame ContentFr;
         public static NavigationView Nav;
+        public static String Page_ = "Home";
         public MainWindow()
         {
             this.InitializeComponent();
@@ -83,7 +86,7 @@ namespace App2
             account.Content = "Аккаунт";
             NavigationView.PaneTitle = "Меню";
 
-        }
+        } 
 
         private void NavigationView_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
         {
@@ -238,7 +241,7 @@ namespace App2
                 StackPan.Visibility = Visibility.Collapsed;
             }
 
-
+            Page_ = (string)item.Tag;
             nav++;
             NavigationView.IsBackEnabled = true;
             ContentFrame.Navigate(
