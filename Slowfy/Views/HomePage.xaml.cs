@@ -77,14 +77,14 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
                     TestView.SelectedItem = TestView.SelectedIndex + 1;
                     TestView.SelectedIndex = TestView.SelectedIndex + 1;
                     next = 0;
-                    Player.Source = MediaSource.CreateFromUri(new Uri(trackName[TestView.SelectedIndex].source));
+                    Player.Source = MediaSource.CreateFromUri(new Uri($"{Constants.URL}file/mp3?mp3={trackName[TestView.SelectedIndex].id}.mp3"));
                         
                     ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
 
                     Stackpan.Visibility = Visibility.Visible;
 
                     String localValue = localSettings.Values["JwtToken"] as string;
-                    localSettings.Values["LastSource"] = trackName[TestView.SelectedIndex].source;
+                    localSettings.Values["LastSource"] = $"{Constants.URL}file/mp3?mp3={trackName[TestView.SelectedIndex].id}.mp3";
                     localSettings.Values["LastTitle"] = trackName[TestView.SelectedIndex].title;
                     localSettings.Values["LastAutor"] = trackName[TestView.SelectedIndex].author;
                     localSettings.Values["LastId"] = trackName[TestView.SelectedIndex].id;
@@ -123,19 +123,19 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
             {
                 PopularTitle.Text = PopularTracks[0].title;
                 PopularTAutor.Text = PopularTracks[0].author;
-                PopularImage.Source = new BitmapImage(new Uri(PopularTracks[0].image));
+                PopularImage.Source = new BitmapImage(new Uri($"{Constants.URL}file/mp3?mp3={PopularTracks[0].id}.jpg"));
             }
             if (PopularTitle2.Text != PopularTracks[0].title && PopularTAutor2.Text != PopularTracks[1].author)
             {
                 PopularTitle2.Text = PopularTracks[1].title;
                 PopularTAutor2.Text = PopularTracks[1].author;
-                PopularImage2.Source = new BitmapImage(new Uri(PopularTracks[1].image));
+                PopularImage2.Source = new BitmapImage(new Uri($"{Constants.URL}file/mp3?mp3={PopularTracks[1].id}.jpg"));
             }
             if (PopularTitle3.Text != PopularTracks[0].title && PopularTAutor3.Text != PopularTracks[2].author)
             {
                 PopularTitle3.Text = PopularTracks[2].title;
                 PopularTAutor3.Text = PopularTracks[2].author;
-                PopularImage3.Source = new BitmapImage(new Uri(PopularTracks[2].image));
+                PopularImage3.Source = new BitmapImage(new Uri($"{Constants.URL}file/mp3?mp3={PopularTracks[2].id}.jpg"));
             }
 
         }
@@ -166,6 +166,7 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
                     track.like = "ms-appx:///Views/heart2.png";
                 }
                 else { track.like = "ms-appx:///Views/hear1.png"; }
+                track.image = $"{Constants.URL}file/mp3?mp3={track.id}.jpg";
                 TestView.Items.Add(track);
             }
             Border1.Visibility = Visibility.Visible;
@@ -178,9 +179,9 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
             PopularTitle3.Text = PopularTracks[2].title;
             PopularTAutor3.Text = PopularTracks[2].author;
 
-            PopularImage.Source = new BitmapImage(new Uri(PopularTracks[0].image));
-            PopularImage2.Source = new BitmapImage(new Uri(PopularTracks[1].image));
-            PopularImage3.Source = new BitmapImage(new Uri(PopularTracks[2].image));
+            PopularImage.Source = new BitmapImage(new Uri($"{Constants.URL}file/mp3?mp3={PopularTracks[0].id}.jpg"));
+            PopularImage2.Source = new BitmapImage(new Uri($"{Constants.URL}file/mp3?mp3={PopularTracks[1].id}.jpg"));
+            PopularImage3.Source = new BitmapImage(new Uri($"{Constants.URL}file/mp3?mp3={PopularTracks[2].id}.jpg"));
 
             PopularText.Visibility = Visibility.Visible;
             PopularText2.Visibility = Visibility.Visible;
@@ -222,13 +223,13 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
         {
             if (MainWindow.Page_ == "XamlBrewer.WinUI3.Navigation.Sample.Views.HomePage")
             {
-                dispatcherTimer.Stop();
-                dispatcherTimer.Start();
+                //dispatcherTimer.Stop();
+                //dispatcherTimer.Start();
             }
             // Looking at if the list is anything more than 0 items, they can be removed
             if (TestView.SelectedIndex > -1)
             {
-                Player.Source = MediaSource.CreateFromUri(new Uri(trackName[TestView.SelectedIndex].source));
+                Player.Source = MediaSource.CreateFromUri(new Uri($"{Constants.URL}file/mp3?mp3={trackName[TestView.SelectedIndex].id}.mp3"));
 
 
                 ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
@@ -238,7 +239,7 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
                 Player.MediaPlayer.AudioCategory = MediaPlayerAudioCategory.Media;
 
                 String localValue = localSettings.Values["JwtToken"] as string;
-                localSettings.Values["LastSource"] = trackName[TestView.SelectedIndex].source;
+                localSettings.Values["LastSource"] = $"{Constants.URL}file/mp3?mp3={trackName[TestView.SelectedIndex].id}.mp3";
                 localSettings.Values["LastTitle"] = trackName[TestView.SelectedIndex].title;
                 localSettings.Values["LastAutor"] = trackName[TestView.SelectedIndex].author;
                 localSettings.Values["LastId"] = trackName[TestView.SelectedIndex].id;
@@ -287,7 +288,7 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
 
         private async void PopularButton3_Click(object sender, RoutedEventArgs e)
         {
-            Player.Source = MediaSource.CreateFromUri(new Uri(PopularTracks[2].source));
+            Player.Source = MediaSource.CreateFromUri(new Uri($"{Constants.URL}file/mp3?mp3={PopularTracks[2].id}.mp3"));
 
 
             ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
@@ -295,7 +296,7 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
             Stackpan.Visibility = Visibility.Visible;
             // load a setting that is local to the device
             String localValue = localSettings.Values["JwtToken"] as string;
-            localSettings.Values["LastSource"] = PopularTracks[2].source;
+            localSettings.Values["LastSource"] = $"{Constants.URL}file/mp3?mp3={PopularTracks[2].id}.mp3";
             localSettings.Values["LastTitle"] = PopularTracks[2].title;
             localSettings.Values["LastAutor"] = PopularTracks[2].author;
 
@@ -307,7 +308,7 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
 
         private async void PopularButton2_Click(object sender, RoutedEventArgs e)
         {
-            Player.Source = MediaSource.CreateFromUri(new Uri(PopularTracks[1].source));
+            Player.Source = MediaSource.CreateFromUri(new Uri($"{Constants.URL}file/mp3?mp3={PopularTracks[1].id}.mp3"));
 
 
             ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
@@ -315,7 +316,7 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
             Stackpan.Visibility = Visibility.Visible;
             // load a setting that is local to the device
             String localValue = localSettings.Values["JwtToken"] as string;
-            localSettings.Values["LastSource"] = PopularTracks[1].source;
+            localSettings.Values["LastSource"] = $"{Constants.URL}file/mp3?mp3={PopularTracks[1].id}.mp3";
             localSettings.Values["LastTitle"] = PopularTracks[1].title;
             localSettings.Values["LastAutor"] = PopularTracks[1].author;
 
@@ -327,7 +328,7 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
 
         private async void PopularButton_Click(object sender, RoutedEventArgs e)
         {
-            Player.Source = MediaSource.CreateFromUri(new Uri(PopularTracks[0].source));
+            Player.Source = MediaSource.CreateFromUri(new Uri($"{Constants.URL}file/mp3?mp3={PopularTracks[0].id}.mp3"));
 
 
             ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
@@ -335,7 +336,7 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
             Stackpan.Visibility = Visibility.Visible;
             // load a setting that is local to the device
             String localValue = localSettings.Values["JwtToken"] as string;
-            localSettings.Values["LastSource"] = PopularTracks[0].source;
+            localSettings.Values["LastSource"] = $"{Constants.URL}file/mp3?mp3={PopularTracks[0].id}.mp3";
             localSettings.Values["LastTitle"] = PopularTracks[0].title;
             localSettings.Values["LastAutor"] = PopularTracks[0].author;
 

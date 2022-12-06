@@ -62,7 +62,7 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
 
             if (MainWindow.Page_ != "XamlBrewer.WinUI3.Navigation.Sample.Views.MusicPage")
             {
-                dispatcherTimer.Stop();
+                //dispatcherTimer.Stop();
             }
             else
             {
@@ -73,14 +73,14 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
                         TestView.SelectedItem = TestView.SelectedIndex + 1;
                         TestView.SelectedIndex = TestView.SelectedIndex + 1;
                         next = 0;
-                        Player.Source = MediaSource.CreateFromUri(new Uri(trackName[TestView.SelectedIndex].source));
+                        Player.Source = MediaSource.CreateFromUri(new Uri($"{Constants.URL}file/mp3?mp3={trackName[TestView.SelectedIndex].id}.mp3"));
 
                         ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
 
                         Stackpan.Visibility = Visibility.Visible;
 
                         String localValue = localSettings.Values["JwtToken"] as string;
-                        localSettings.Values["LastSource"] = trackName[TestView.SelectedIndex].source;
+                        localSettings.Values["LastSource"] = $"{Constants.URL}file/mp3?mp3={trackName[TestView.SelectedIndex].id}.mp3";
                         localSettings.Values["LastTitle"] = trackName[TestView.SelectedIndex].title;
                         localSettings.Values["LastAutor"] = trackName[TestView.SelectedIndex].author;
                         localSettings.Values["LastId"] = trackName[TestView.SelectedIndex].id;
@@ -119,6 +119,7 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
                 }
                 else { track.like = "ms-appx:///Views/hear1.png"; }
                 track.listid = idTrack;
+                track.image = $"{Constants.URL}file/mp3?mp3={track.id}.jpg";
                 TestView.Items.Add(track);
                 idTrack++;
             }
@@ -165,7 +166,7 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
             // Looking at if the list is anything more than 0 items, they can be removed
             if (TestView.SelectedIndex > -1)
             {
-                Player.Source = MediaSource.CreateFromUri(new Uri(trackName[TestView.SelectedIndex].source));
+                Player.Source = MediaSource.CreateFromUri(new Uri($"{Constants.URL}file/mp3?mp3={trackName[TestView.SelectedIndex].id}.mp3"));
 
 
                 ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
@@ -173,7 +174,7 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
                 Stackpan.Visibility = Visibility.Visible;
                 // load a setting that is local to the device
                 String localValue = localSettings.Values["JwtToken"] as string;
-                localSettings.Values["LastSource"] = trackName[TestView.SelectedIndex].source;
+                localSettings.Values["LastSource"] = $"{Constants.URL}file/mp3?mp3={trackName[TestView.SelectedIndex].id}.mp3";
                 localSettings.Values["LastTitle"] = trackName[TestView.SelectedIndex].title;
                 localSettings.Values["LastAutor"] = trackName[TestView.SelectedIndex].author;
 

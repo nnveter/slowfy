@@ -30,7 +30,7 @@
             <StackPanel Orientation="Vertical" VerticalAlignment="Top">
                 <TextBlock x:Name="PopularText" HorizontalAlignment="Left" FontSize="21"  Margin="15,25,0,10" Text="Popular tracks" Foreground="DarkGray"/>
                 <StackPanel Orientation="Horizontal">
-                        <Border x:Name="Border1" Visibility="Collapsed" Background="#585858" Margin="35,0,5,0" CornerRadius="14" Width="225" Height="89">
+                        <Border x:Name="Border1" Visibility="Collapsed" Background="#323232" Margin="35,0,5,0" CornerRadius="14" Width="225" Height="89">
                         <Grid>
                             <StackPanel Orientation="Horizontal" AllowFocusOnInteraction="True">
                                 <Image x:Name="PopularImage" />
@@ -44,7 +44,7 @@
                             </Button>
                         </Grid>
                     </Border>
-                        <Border x:Name="Border2" Visibility="Collapsed" Background="#585858" Margin="35,0,5,0" CornerRadius="14" Width="225" Height="89">
+                        <Border x:Name="Border2" Visibility="Collapsed" Background="#323232" Margin="35,0,5,0" CornerRadius="14" Width="225" Height="89">
                         <Grid>
                             <StackPanel Orientation="Horizontal">
                                 <Image x:Name="PopularImage2" />
@@ -58,7 +58,7 @@
                             </Button>
                         </Grid>
                     </Border>
-                        <Border x:Name="Border3" Visibility="Collapsed" Background="#585858" Margin="35,0,5,0" CornerRadius="14" Width="225" Height="89">
+                        <Border x:Name="Border3" Visibility="Collapsed" Background="#323232" Margin="35,0,5,0" CornerRadius="14" Width="225" Height="89">
                         <Grid>
                             <StackPanel Orientation="Horizontal">
                                 <Image x:Name="PopularImage3" />
