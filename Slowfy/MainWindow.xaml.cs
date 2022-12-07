@@ -86,6 +86,13 @@ namespace App2
             account.Content = "Аккаунт";
             NavigationView.PaneTitle = "Меню";
 
+            TextBlock.Text = "Создать новый аккаунт";
+            Name.PlaceholderText = "Имя";
+            Email.PlaceholderText = "Почта";
+            passworBoxWithRevealmode.PlaceholderText = "Пароль";
+            revealModeCheckBox.Content = "Показать пароль";
+            myButton.Content = "Дальше";
+            Hyperlink.Content = "У вас уже есть аккаунт?";
         } 
 
         private void NavigationView_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
@@ -104,16 +111,16 @@ namespace App2
             if (State == "Reg")
             {
                 State = "Log";
-                TextBlock.Text = "Login";
+                TextBlock.Text = "Войти";
                 Name.Visibility = Visibility.Collapsed;
-                Hyperlink.Content = "Don't have an account yet?";
+                Hyperlink.Content = "У вас ещё нет аккаунта?";
             }
             else
             {
                 State = "Reg";
-                TextBlock.Text = "Create new account";
+                TextBlock.Text = "Создать новый аккаунт";
                 Name.Visibility = Visibility.Visible;
-                Hyperlink.Content = "Do you already have an account?";
+                Hyperlink.Content = "У вас уже есть аккаунт?";
 
             }
         }

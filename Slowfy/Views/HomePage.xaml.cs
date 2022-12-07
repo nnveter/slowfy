@@ -125,13 +125,13 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
                 PopularTAutor.Text = PopularTracks[0].author;
                 PopularImage.Source = new BitmapImage(new Uri($"{Constants.URL}file/mp3?mp3={PopularTracks[0].id}.jpg"));
             }
-            if (PopularTitle2.Text != PopularTracks[0].title && PopularTAutor2.Text != PopularTracks[1].author)
+            if (PopularTitle2.Text != PopularTracks[1].title && PopularTAutor2.Text != PopularTracks[1].author)
             {
                 PopularTitle2.Text = PopularTracks[1].title;
                 PopularTAutor2.Text = PopularTracks[1].author;
                 PopularImage2.Source = new BitmapImage(new Uri($"{Constants.URL}file/mp3?mp3={PopularTracks[1].id}.jpg"));
             }
-            if (PopularTitle3.Text != PopularTracks[0].title && PopularTAutor3.Text != PopularTracks[2].author)
+            if (PopularTitle3.Text != PopularTracks[2].title && PopularTAutor3.Text != PopularTracks[2].author)
             {
                 PopularTitle3.Text = PopularTracks[2].title;
                 PopularTAutor3.Text = PopularTracks[2].author;

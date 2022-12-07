@@ -15,6 +15,7 @@
     <PackageIcon>icons8-apple-music-bubbles-70.png</PackageIcon>
     <AnalysisLevel>6.0-recommended</AnalysisLevel>
     <SignAssembly>False</SignAssembly>
+    <DisableXbfLineInfo>False</DisableXbfLineInfo>
     <ApplicationIcon>icons8-apple-music-bubbles-310.ico</ApplicationIcon>
     <PackageCertificateThumbprint>211FBA2C0E1878EE78354DC3D870F498BAC3A75C</PackageCertificateThumbprint>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
