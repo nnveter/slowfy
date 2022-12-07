@@ -128,6 +128,7 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
                 foreach (Track track in rec)
                 {
                     track.listid = idTrack;
+                    track.image = $"{Constants.URL}file/mp3?mp3={track.id}.jpg";
                     TestView.Items.Add(track);
                     idTrack++;
                 }
