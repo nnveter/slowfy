@@ -78,7 +78,7 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Grid Height="45">
-                                    <TextBlock Text="{Binding id}" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left"  Foreground="DarkGray" TextWrapping="NoWrap"/>
+                                    <TextBlock Text="{Binding listid}" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left"  Foreground="DarkGray" TextWrapping="NoWrap"/>
                                     <StackPanel Orientation="Horizontal" Margin="13,0,0,0">
                                         <!--<HyperlinkButton VerticalAlignment="Center" DataContext="{Binding}">
                                     <SymbolIcon Symbol ="Play" />

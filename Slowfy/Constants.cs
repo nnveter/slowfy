@@ -2,6 +2,6 @@
 {
     public static class Constants
     {
-        public static string URL = "https://localhost:7148/";
+        public static string URL = "https://localhost:5001/";
     }
 }

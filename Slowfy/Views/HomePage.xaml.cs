@@ -18,6 +18,7 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
     {
 
         public List<Track> trackName;
+        public int idTrack;
         public MediaPlayerElement Player;
         public static StackPanel Stackpan;
         public static TextBlock txtTitle;
@@ -72,7 +73,7 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
         public async void dispatcherTimer_Tick2(object sender, object e)
         {
             if (next == 1 && MainWindow.Page_ == "XamlBrewer.WinUI3.Navigation.Sample.Views.HomePage") {
-                if (TestView.SelectedIndex < trackName.Count)
+                if (TestView.SelectedIndex < trackName.Count - 1)
                 {
                     TestView.SelectedItem = TestView.SelectedIndex + 1;
                     TestView.SelectedIndex = TestView.SelectedIndex + 1;
@@ -158,6 +159,7 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
 
             // load a setting that is local to the device
             String localValue = localSettings.Values["JwtToken"] as string;
+            idTrack = 1;
             foreach (Track track in rec)
             {
                 result4 = await new ReqService().Get($"{App2.Constants.URL}favtracks/isfavourite?trackId={track.id}", localValue);
@@ -167,7 +169,9 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
                 }
                 else { track.like = "ms-appx:///Views/hear1.png"; }
                 track.image = $"{Constants.URL}file/mp3?mp3={track.id}.jpg";
+                track.listid = idTrack;
                 TestView.Items.Add(track);
+                idTrack++;
             }
             Border1.Visibility = Visibility.Visible;
             PopularTitle.Text = PopularTracks[0].title;

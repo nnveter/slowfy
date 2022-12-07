@@ -68,7 +68,7 @@ namespace XamlBrewer.WinUI3.Navigation.Sample.Views
             {
                 if (next == 1 && MainWindow.Page_ == "XamlBrewer.WinUI3.Navigation.Sample.Views.MusicPage")
                 {
-                    if (TestView.SelectedIndex < trackName.Count)
+                    if (TestView.SelectedIndex < trackName.Count - 1)
                     {
                         TestView.SelectedItem = TestView.SelectedIndex + 1;
                         TestView.SelectedIndex = TestView.SelectedIndex + 1;
